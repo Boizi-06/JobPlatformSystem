@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.example.jobplatformsystem.security.JwtService;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

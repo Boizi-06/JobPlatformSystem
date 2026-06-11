@@ -30,4 +30,9 @@ public class User {
     private Role role;
 
     private Boolean active;
+    @Column(name = "cv_url")
+    private String cvUrl;
+
+    @Column(name = "portfolio_url")
+    private String portfolioUrl;
 }
