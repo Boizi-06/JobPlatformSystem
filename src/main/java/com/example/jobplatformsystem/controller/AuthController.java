@@ -1,6 +1,8 @@
 package com.example.jobplatformsystem.controller;
 
+import com.example.jobplatformsystem.dto.request.LoginRequest;
 import com.example.jobplatformsystem.dto.request.RegisterRequest;
+import com.example.jobplatformsystem.dto.response.LoginResponse;
 import com.example.jobplatformsystem.dto.response.UserResponse;
 import com.example.jobplatformsystem.service.UserService;
 import jakarta.validation.Valid;
@@ -17,10 +19,18 @@ public class AuthController {
 
     private final UserService userService;
 
+
     @PostMapping("/register")
     public UserResponse register(
             @Valid @RequestBody RegisterRequest request) {
 
         return userService.register(request);
+    }
+    @PostMapping("/login")
+    public LoginResponse login(
+            @Valid @RequestBody
+            LoginRequest request) {
+
+        return userService.login(request);
     }
 }

@@ -1,6 +1,8 @@
 package com.example.jobplatformsystem.service.impl;
 
+import com.example.jobplatformsystem.dto.request.LoginRequest;
 import com.example.jobplatformsystem.dto.request.RegisterRequest;
+import com.example.jobplatformsystem.dto.response.LoginResponse;
 import com.example.jobplatformsystem.dto.response.UserResponse;
 import com.example.jobplatformsystem.entity.User;
 import com.example.jobplatformsystem.exception.DuplicateResourceException;
@@ -8,7 +10,9 @@ import com.example.jobplatformsystem.exception.ResourceNotFoundException;
 import com.example.jobplatformsystem.mapper.UserMapper;
 import com.example.jobplatformsystem.repository.UserRepository;
 import com.example.jobplatformsystem.service.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +24,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserResponse register(RegisterRequest request) {
@@ -36,7 +41,9 @@ public class UserServiceImpl implements UserService {
         User user = User.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
-                .password(request.getPassword())
+                .password(
+                        passwordEncoder.encode(
+                                request.getPassword()))
                 .role(request.getRole())
                 .active(true)
                 .build();
@@ -101,5 +108,32 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findAll(pageable)
                 .map(UserMapper::toResponse);
+    }
+    @Override
+    public LoginResponse login(LoginRequest request) {
+
+        User user = userRepository
+                .findByEmail(request.getEmail())
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Email not found"));
+
+        boolean matched =
+                passwordEncoder.matches(
+                        request.getPassword(),
+                        user.getPassword());
+
+        if (!matched) {
+            throw new RuntimeException(
+                    "Invalid password");
+        }
+
+        return LoginResponse.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .role(user.getRole())
+                .message("Login success")
+                .build();
     }
 }
