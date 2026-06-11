@@ -2,6 +2,7 @@ package com.example.jobplatformsystem.service;
 
 import com.example.jobplatformsystem.dto.request.LoginRequest;
 import com.example.jobplatformsystem.dto.request.RegisterRequest;
+import com.example.jobplatformsystem.dto.response.AuthResponse;
 import com.example.jobplatformsystem.dto.response.JobResponse;
 import com.example.jobplatformsystem.dto.response.LoginResponse;
 import com.example.jobplatformsystem.dto.response.UserResponse;
@@ -20,7 +21,7 @@ public interface UserService {
     List<UserResponse> searchUsers(String keyword);
 
     Page<UserResponse> getUsers(int page, int size);
-    LoginResponse login(LoginRequest request);
+    AuthResponse login(LoginRequest request);
 
 
 }

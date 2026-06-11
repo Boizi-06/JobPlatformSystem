@@ -2,6 +2,7 @@ package com.example.jobplatformsystem.controller;
 
 import com.example.jobplatformsystem.dto.request.LoginRequest;
 import com.example.jobplatformsystem.dto.request.RegisterRequest;
+import com.example.jobplatformsystem.dto.response.AuthResponse;
 import com.example.jobplatformsystem.dto.response.LoginResponse;
 import com.example.jobplatformsystem.dto.response.UserResponse;
 import com.example.jobplatformsystem.service.UserService;
@@ -27,7 +28,7 @@ public class AuthController {
         return userService.register(request);
     }
     @PostMapping("/login")
-    public LoginResponse login(
+    public AuthResponse login(
             @Valid @RequestBody
             LoginRequest request) {
 

@@ -12,12 +12,24 @@ import com.example.jobplatformsystem.repository.UserRepository;
 import com.example.jobplatformsystem.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
+import com.example.jobplatformsystem.dto.response.AuthResponse;
+import com.example.jobplatformsystem.security.JwtService;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.example.jobplatformsystem.dto.response.AuthResponse;
+import com.example.jobplatformsystem.security.JwtService;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +37,9 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+
+    private final JwtService jwtService;
 
     @Override
     public UserResponse register(RegisterRequest request) {
@@ -110,30 +125,39 @@ public class UserServiceImpl implements UserService {
                 .map(UserMapper::toResponse);
     }
     @Override
-    public LoginResponse login(LoginRequest request) {
+    public AuthResponse login(LoginRequest request) {
+
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()
+                )
+        );
 
         User user = userRepository
                 .findByEmail(request.getEmail())
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
-                                "Email not found"));
+                                "User not found"));
 
-        boolean matched =
-                passwordEncoder.matches(
-                        request.getPassword(),
-                        user.getPassword());
+        UserDetails userDetails =
+                org.springframework.security.core.userdetails.User
+                        .builder()
+                        .username(user.getEmail())
+                        .password(user.getPassword())
+                        .roles(user.getRole().name())
+                        .build();
 
-        if (!matched) {
-            throw new RuntimeException(
-                    "Invalid password");
-        }
+        String accessToken =
+                jwtService.generateToken(userDetails);
 
-        return LoginResponse.builder()
+        return AuthResponse.builder()
+                .accessToken(accessToken)
                 .id(user.getId())
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .role(user.getRole())
-                .message("Login success")
                 .build();
     }
+
 }
