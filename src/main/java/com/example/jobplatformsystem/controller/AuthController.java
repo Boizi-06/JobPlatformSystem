@@ -1,24 +1,34 @@
 package com.example.jobplatformsystem.controller;
 
 import com.example.jobplatformsystem.dto.request.LoginRequest;
+import com.example.jobplatformsystem.dto.request.RefreshTokenRequest;
 import com.example.jobplatformsystem.dto.request.RegisterRequest;
 import com.example.jobplatformsystem.dto.response.AuthResponse;
-import com.example.jobplatformsystem.dto.response.LoginResponse;
+import com.example.jobplatformsystem.dto.response.RefreshTokenResponse;
 import com.example.jobplatformsystem.dto.response.UserResponse;
+import com.example.jobplatformsystem.entity.RefreshToken;
+import com.example.jobplatformsystem.entity.User;
+import com.example.jobplatformsystem.security.CustomUserDetailsService;
+import com.example.jobplatformsystem.security.JwtService;
+import com.example.jobplatformsystem.service.RefreshTokenService;
 import com.example.jobplatformsystem.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.example.jobplatformsystem.dto.request.LogoutRequest;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
     private final UserService userService;
+    private final RefreshTokenService refreshTokenService;
+    private final JwtService jwtService;
+    private final CustomUserDetailsService customUserDetailsService;
 
 
     @PostMapping("/register")
@@ -33,5 +43,44 @@ public class AuthController {
             LoginRequest request) {
 
         return userService.login(request);
+    }
+    @PostMapping("/refresh-token")
+    public RefreshTokenResponse refreshToken(
+            @RequestBody RefreshTokenRequest request) {
+
+        RefreshToken refreshToken =
+                refreshTokenService
+                        .verifyRefreshToken(
+                                request.getRefreshToken());
+
+        User user = refreshToken.getUser();
+
+        UserDetails userDetails =
+                customUserDetailsService
+                        .loadUserByUsername(
+                                user.getEmail());
+
+        String accessToken =
+                jwtService.generateToken(
+                        userDetails);
+
+        return RefreshTokenResponse.builder()
+                .accessToken(accessToken)
+                .refreshToken(
+                        refreshToken.getToken()
+                )
+                .build();
+    }
+
+
+    @PostMapping("/logout")
+    public String logout(
+            @RequestBody LogoutRequest request) {
+
+        refreshTokenService.revokeRefreshToken(
+                request.getRefreshToken()
+        );
+
+        return "Logout successful";
     }
 }

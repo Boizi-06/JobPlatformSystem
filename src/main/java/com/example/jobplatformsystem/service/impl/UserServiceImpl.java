@@ -2,13 +2,16 @@ package com.example.jobplatformsystem.service.impl;
 
 import com.example.jobplatformsystem.dto.request.LoginRequest;
 import com.example.jobplatformsystem.dto.request.RegisterRequest;
-import com.example.jobplatformsystem.dto.response.LoginResponse;
+
 import com.example.jobplatformsystem.dto.response.UserResponse;
+import com.example.jobplatformsystem.entity.RefreshToken;
 import com.example.jobplatformsystem.entity.User;
 import com.example.jobplatformsystem.exception.DuplicateResourceException;
 import com.example.jobplatformsystem.exception.ResourceNotFoundException;
 import com.example.jobplatformsystem.mapper.UserMapper;
 import com.example.jobplatformsystem.repository.UserRepository;
+import com.example.jobplatformsystem.security.CustomUserDetailsService;
+import com.example.jobplatformsystem.service.RefreshTokenService;
 import com.example.jobplatformsystem.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +27,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.example.jobplatformsystem.dto.response.AuthResponse;
-import com.example.jobplatformsystem.security.JwtService;
-
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +37,8 @@ public class UserServiceImpl implements UserService {
     private final AuthenticationManager authenticationManager;
 
     private final JwtService jwtService;
-
+    private final RefreshTokenService refreshTokenService;
+    private final CustomUserDetailsService customUserDetailsService;
     @Override
     public UserResponse register(RegisterRequest request) {
 
@@ -127,32 +125,36 @@ public class UserServiceImpl implements UserService {
     @Override
     public AuthResponse login(LoginRequest request) {
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );
-
         User user = userRepository
                 .findByEmail(request.getEmail())
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
-                                "User not found"));
+                                "Email not found"));
+
+        if (!passwordEncoder.matches(
+                request.getPassword(),
+                user.getPassword())) {
+
+            throw new RuntimeException(
+                    "Invalid password");
+        }
 
         UserDetails userDetails =
-                org.springframework.security.core.userdetails.User
-                        .builder()
-                        .username(user.getEmail())
-                        .password(user.getPassword())
-                        .roles(user.getRole().name())
-                        .build();
+                customUserDetailsService
+                        .loadUserByUsername(
+                                user.getEmail());
 
         String accessToken =
-                jwtService.generateToken(userDetails);
+                jwtService.generateToken(
+                        userDetails);
+
+        RefreshToken refreshToken =
+                refreshTokenService
+                        .createRefreshToken(user);
 
         return AuthResponse.builder()
                 .accessToken(accessToken)
+                .refreshToken(refreshToken.getToken())
                 .id(user.getId())
                 .username(user.getUsername())
                 .email(user.getEmail())

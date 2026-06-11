@@ -1,6 +1,5 @@
 package com.example.jobplatformsystem.dto.response;
 
-import com.example.jobplatformsystem.entity.enums.Role;
 import lombok.*;
 
 @Getter
@@ -8,18 +7,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AuthResponse {
+public class RefreshTokenResponse {
 
     private String accessToken;
 
-
     private String refreshToken;
-
-    private Long id;
-
-    private String username;
-
-    private String email;
-
-    private Role role;
 }
