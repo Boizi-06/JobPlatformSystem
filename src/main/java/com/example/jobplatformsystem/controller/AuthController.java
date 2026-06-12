@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.jobplatformsystem.dto.request.LogoutRequest;
+import org.springframework.security.core.Authentication;
+import com.example.jobplatformsystem.dto.request.ChangePasswordRequest;
+import com.example.jobplatformsystem.dto.request.ForgotPasswordRequest;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
@@ -82,5 +85,26 @@ public class AuthController {
         );
 
         return "Logout successful";
+    }
+    @PostMapping("/change-password")
+    public String changePassword(
+            Authentication authentication,
+            @RequestBody ChangePasswordRequest request) {
+        System.out.println(authentication.getName());
+        System.out.println("Authentication = " + authentication);
+        System.out.println("Name = " + authentication.getName());
+        return userService.changePassword(
+                authentication.getName(),
+                request);
+    }
+    @PostMapping("/forgot-password")
+    public String forgotPassword(
+            @RequestBody ForgotPasswordRequest request) {
+
+        String newPassword =
+                userService.forgotPassword(
+                        request.getEmail());
+
+        return "New password: " + newPassword;
     }
 }

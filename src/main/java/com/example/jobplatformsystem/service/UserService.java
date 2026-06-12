@@ -1,5 +1,6 @@
 package com.example.jobplatformsystem.service;
 
+import com.example.jobplatformsystem.dto.request.ChangePasswordRequest;
 import com.example.jobplatformsystem.dto.request.LoginRequest;
 import com.example.jobplatformsystem.dto.request.RegisterRequest;
 import com.example.jobplatformsystem.dto.response.AuthResponse;
@@ -23,5 +24,10 @@ public interface UserService {
     Page<UserResponse> getUsers(int page, int size);
     AuthResponse login(LoginRequest request);
 
+    String changePassword(
+            String username,
+            ChangePasswordRequest request);
 
+    String forgotPassword(
+            String email);
 }

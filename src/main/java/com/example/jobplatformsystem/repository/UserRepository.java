@@ -14,4 +14,7 @@ public interface UserRepository
     boolean existsByUsername(String username);
     Optional<User> findByEmail(String email);
     List<User> findByUsernameContainingIgnoreCase(String keyword);
+
+
+    Optional<User> findByUsername(String username);
 }

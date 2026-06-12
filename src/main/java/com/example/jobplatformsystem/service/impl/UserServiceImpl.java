@@ -1,5 +1,6 @@
 package com.example.jobplatformsystem.service.impl;
 
+import com.example.jobplatformsystem.dto.request.ChangePasswordRequest;
 import com.example.jobplatformsystem.dto.request.LoginRequest;
 import com.example.jobplatformsystem.dto.request.RegisterRequest;
 
@@ -39,6 +40,7 @@ public class UserServiceImpl implements UserService {
     private final JwtService jwtService;
     private final RefreshTokenService refreshTokenService;
     private final CustomUserDetailsService customUserDetailsService;
+
     @Override
     public UserResponse register(RegisterRequest request) {
 
@@ -160,6 +162,52 @@ public class UserServiceImpl implements UserService {
                 .email(user.getEmail())
                 .role(user.getRole())
                 .build();
+    }
+    @Override
+    public String changePassword(
+            String username,
+            ChangePasswordRequest request) {
+        System.out.println("Username from JWT = " + username);
+
+        User user = userRepository
+                .findByEmail(username)
+                .orElseThrow(() ->
+                        new RuntimeException("User not found"));
+
+        if (!passwordEncoder.matches(
+                request.getOldPassword(),
+                user.getPassword())) {
+
+            throw new RuntimeException(
+                    "Old password is incorrect");
+        }
+
+        user.setPassword(
+                passwordEncoder.encode(
+                        request.getNewPassword()));
+
+        userRepository.save(user);
+
+        return "Password changed successfully";
+    }
+    @Override
+    public String forgotPassword(String email) {
+
+        User user = userRepository
+                .findByEmail(email)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "Email not found"));
+
+        String newPassword =
+                "Job" + System.currentTimeMillis() % 10000;
+
+        user.setPassword(
+                passwordEncoder.encode(newPassword));
+
+        userRepository.save(user);
+
+        return newPassword;
     }
 
 }
