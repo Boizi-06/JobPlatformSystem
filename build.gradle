@@ -22,7 +22,7 @@ dependencies {
 
 
 // Web
-    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
 // JPA
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -63,6 +63,8 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 
+// AOP - Logging Aspect (Spring Boot 4.x)
+    implementation 'org.springframework.boot:spring-boot-starter-aspectj'
 
 }
 

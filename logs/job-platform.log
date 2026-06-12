@@ -1,0 +1,75 @@
+2026-06-12T07:44:18.099+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] c.e.j.JobPlatformSystemApplication       : Starting JobPlatformSystemApplication using Java 21.0.9 with PID 8924 (C:\code\Java-WebService\JobPlatformSystem\build\classes\java\main started by admin in C:\code\Java-WebService\JobPlatformSystem)
+2026-06-12T07:44:18.101+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] c.e.j.JobPlatformSystemApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-06-12T07:44:18.157+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-06-12T07:44:18.157+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-06-12T07:44:18.913+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-06-12T07:44:18.913+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-12T07:44:19.056+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 131 ms. Found 4 JPA repository interfaces.
+2026-06-12T07:44:19.088+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-06-12T07:44:19.088+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-06-12T07:44:19.104+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.jobplatformsystem.repository.ApplicationRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-06-12T07:44:19.104+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.jobplatformsystem.repository.JobRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-06-12T07:44:19.119+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.jobplatformsystem.repository.RefreshTokenRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-06-12T07:44:19.119+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.jobplatformsystem.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-06-12T07:44:19.119+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 0 Redis repository interfaces.
+2026-06-12T07:44:19.782+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8085 (http)
+2026-06-12T07:44:19.797+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-12T07:44:19.797+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-06-12T07:44:19.849+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1692 ms
+2026-06-12T07:44:19.992+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-12T07:44:20.039+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-06-12T07:44:20.498+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-12T07:44:20.529+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-12T07:44:20.789+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@21814061
+2026-06-12T07:44:20.789+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-12T07:44:20.848+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/job_platform_system]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.44
+	Default catalog/schema: job_platform_system/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-12T07:44:21.757+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-12T07:44:21.831+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-12T07:44:21.926+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-12T07:44:22.298+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-06-12T07:44:22.392+07:00  WARN 8924 --- [JobPlatformSystem] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-12T07:44:22.595+07:00 DEBUG 8924 --- [JobPlatformSystem] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-06-12T07:44:23.226+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8085 (http) with context path '/'
+2026-06-12T07:44:23.232+07:00  INFO 8924 --- [JobPlatformSystem] [restartedMain] c.e.j.JobPlatformSystemApplication       : Started JobPlatformSystemApplication in 5.576 seconds (process running for 6.11)
+2026-06-12T07:44:34.503+07:00  INFO 8924 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-12T07:44:34.503+07:00  INFO 8924 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-06-12T07:44:34.503+07:00  INFO 8924 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-06-12T07:44:34.532+07:00 DEBUG 8924 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-12T07:44:34.552+07:00 DEBUG 8924 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-12T07:44:36.492+07:00 ERROR 8924 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login failed after 1527 ms
+2026-06-12T07:44:36.496+07:00 ERROR 8924 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : AuthController.login failed after 1533 ms
+2026-06-12T07:44:36.624+07:00  WARN 8924 --- [JobPlatformSystem] [http-nio-8085-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.RuntimeException: Invalid password]
+2026-06-12T07:44:36.630+07:00 DEBUG 8924 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-12T07:44:54.136+07:00 DEBUG 8924 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-12T07:44:54.138+07:00 DEBUG 8924 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-12T07:44:54.283+07:00 ERROR 8924 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login failed after 143 ms
+2026-06-12T07:44:54.283+07:00 ERROR 8924 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : AuthController.login failed after 143 ms
+2026-06-12T07:44:54.289+07:00  WARN 8924 --- [JobPlatformSystem] [http-nio-8085-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.RuntimeException: Invalid password]
+2026-06-12T07:44:54.291+07:00 DEBUG 8924 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-12T07:45:05.964+07:00 DEBUG 8924 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-12T07:45:05.965+07:00 DEBUG 8924 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-12T07:45:05.972+07:00 ERROR 8924 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login failed after 5 ms
+2026-06-12T07:45:05.972+07:00 ERROR 8924 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : AuthController.login failed after 5 ms
+2026-06-12T07:45:05.972+07:00  WARN 8924 --- [JobPlatformSystem] [http-nio-8085-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.jobplatformsystem.exception.ResourceNotFoundException: Email not found]
+2026-06-12T07:45:05.977+07:00 DEBUG 8924 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-12T07:46:28.361+07:00 DEBUG 8924 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/register
+2026-06-12T07:46:28.361+07:00 DEBUG 8924 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/register
+2026-06-12T07:46:28.771+07:00  INFO 8924 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : UserServiceImpl.register executed in 396 ms
+2026-06-12T07:46:28.771+07:00  INFO 8924 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : AuthController.register executed in 396 ms
+2026-06-12T07:46:28.786+07:00 DEBUG 8924 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-12T08:32:30.552+07:00  INFO 8924 --- [JobPlatformSystem] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-12T08:32:30.568+07:00  INFO 8924 --- [JobPlatformSystem] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-06-12T08:32:30.647+07:00  INFO 8924 --- [JobPlatformSystem] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-12T08:32:30.683+07:00  INFO 8924 --- [JobPlatformSystem] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-12T08:32:30.683+07:00  INFO 8924 --- [JobPlatformSystem] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
