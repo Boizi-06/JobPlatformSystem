@@ -1,33 +1,64 @@
 # PROJECT FLOW - JOB PLATFORM SYSTEM
 
-## 1. Tổng quan luồng hoạt động
+## 1. Tổng quan hệ thống
 
-Hệ thống được chia thành các tầng chính:
+Job Platform System là hệ thống tuyển dụng trực tuyến gồm các nhóm chức năng chính:
 
-Client/Postman
-→ Controller
-→ Service
-→ Repository
-→ Database
-
-Ý nghĩa từng tầng:
-
-* **Controller**: nhận request từ client, lấy dữ liệu trong body/path/query, sau đó gọi service.
-* **Service**: xử lý nghiệp vụ chính, kiểm tra dữ liệu, tạo/sửa/xóa entity.
-* **Repository**: giao tiếp với database thông qua Spring Data JPA.
-* **Database**: lưu trữ user, job, application, refresh token.
-* **Security**: kiểm tra JWT token khi gọi các API cần đăng nhập.
-* **AOP Logging**: tự động ghi log thời gian chạy của controller và service.
+* Xác thực người dùng: đăng ký, đăng nhập, refresh token, logout, đổi mật khẩu, quên mật khẩu.
+* Quản lý người dùng: xem danh sách, xem chi tiết, tìm kiếm, phân trang, xóa user.
+* Quản lý tin tuyển dụng: tạo job, sửa job, xóa job, duyệt job, từ chối job, tìm kiếm, phân trang.
+* Quản lý ứng tuyển: ứng tuyển job, xem hồ sơ theo candidate, xem hồ sơ theo job, cập nhật trạng thái hồ sơ.
+* Upload CV: lưu file CV và cập nhật đường dẫn vào user.
+* AOP Logging: ghi log thời gian thực hiện của controller và service.
 
 ---
 
-# 2. AUTH MODULE
+## 2. Kiến trúc chung
 
-## 2.1 Đăng ký tài khoản
+### Luồng tổng quát
+
+```text
+Client / Postman
+        |
+        v
+Controller
+        |
+        v
+Service
+        |
+        v
+Repository
+        |
+        v
+Database
+```
+
+### Sơ đồ luồng tổng quát
+
+```mermaid
+flowchart TD
+    A[Client / Postman] --> B[Controller]
+    B --> C[Service]
+    C --> D[Repository]
+    D --> E[(Database)]
+    C --> F[Mapper / DTO Response]
+    F --> B
+    B --> A
+```
+
+Controller nhận request từ client. Service xử lý nghiệp vụ chính. Repository giao tiếp với database. Sau khi xử lý xong, dữ liệu được chuyển thành DTO Response và trả về client.
+
+---
+
+# 3. AUTH MODULE
+
+---
+
+## 3.1 Đăng ký tài khoản
 
 ### Mục đích
 
-Chức năng này dùng để tạo tài khoản mới cho người dùng. Người dùng có thể đăng ký với vai trò `ADMIN`, `EMPLOYER` hoặc `CANDIDATE`.
+Chức năng đăng ký dùng để tạo tài khoản mới cho người dùng. Người dùng có thể đăng ký với vai trò `ADMIN`, `EMPLOYER` hoặc `CANDIDATE`.
 
 ### API
 
@@ -48,19 +79,40 @@ POST /api/v1/auth/register
 
 ### Luồng hoạt động
 
-Client gửi thông tin đăng ký lên `AuthController`.
+Client gửi dữ liệu đăng ký lên `AuthController.register()`.
 
-`AuthController.register()` nhận dữ liệu dạng `RegisterRequest`, sau đó gọi `UserService.register()`.
+Controller nhận dữ liệu dưới dạng `RegisterRequest`, sau đó gọi `UserService.register()`.
 
-Trong `UserServiceImpl.register()` hệ thống kiểm tra username đã tồn tại chưa bằng `existsByUsername()`. Nếu username đã tồn tại thì trả lỗi.
+Trong `UserServiceImpl.register()`, hệ thống kiểm tra username đã tồn tại chưa bằng `userRepository.existsByUsername()`.
 
-Sau đó hệ thống kiểm tra email đã tồn tại chưa bằng `existsByEmail()`. Nếu email đã tồn tại thì trả lỗi.
+Nếu username đã tồn tại, hệ thống ném `DuplicateResourceException`.
 
-Nếu dữ liệu hợp lệ, hệ thống mã hóa password bằng `PasswordEncoder`. Mật khẩu thật không được lưu trực tiếp trong database.
+Nếu username hợp lệ, hệ thống kiểm tra tiếp email bằng `userRepository.existsByEmail()`.
 
-Sau đó hệ thống tạo object `User`, set trạng thái `active = true`, rồi lưu vào bảng `users`.
+Nếu email đã tồn tại, hệ thống ném `DuplicateResourceException`.
+
+Nếu dữ liệu hợp lệ, password được mã hóa bằng `passwordEncoder.encode()`.
+
+Sau đó hệ thống tạo entity `User`, set `active = true`, lưu vào database bằng `userRepository.save()`.
 
 Cuối cùng trả về `UserResponse`.
+
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gửi RegisterRequest] --> B[AuthController.register]
+    B --> C[UserServiceImpl.register]
+    C --> D{Username tồn tại?}
+    D -- Có --> E[Trả lỗi Username already exists]
+    D -- Không --> F{Email tồn tại?}
+    F -- Có --> G[Trả lỗi Email already exists]
+    F -- Không --> H[Mã hóa password bằng BCrypt]
+    H --> I[Tạo User entity]
+    I --> J[UserRepository.save]
+    J --> K[(Bảng users)]
+    K --> L[Trả UserResponse]
+```
 
 ### Response thành công
 
@@ -76,21 +128,22 @@ Cuối cùng trả về `UserResponse`.
 
 ### Test case
 
-| Mã         | Trường hợp          | Dữ liệu test        | Kết quả mong đợi          |
-| ---------- | ------------------- | ------------------- | ------------------------- |
-| TC-AUTH-01 | Đăng ký thành công  | username/email mới  | Tạo user thành công       |
-| TC-AUTH-02 | Trùng username      | username đã tồn tại | `Username already exists` |
-| TC-AUTH-03 | Trùng email         | email đã tồn tại    | `Email already exists`    |
-| TC-AUTH-04 | Email sai định dạng | email = `abc`       | 400 Bad Request           |
-| TC-AUTH-05 | Thiếu password      | không gửi password  | 400 Bad Request           |
+| Mã test    | Trường hợp          | Dữ liệu test                   | Kết quả mong đợi          |
+| ---------- | ------------------- | ------------------------------ | ------------------------- |
+| TC-AUTH-01 | Đăng ký thành công  | username và email chưa tồn tại | Tạo user thành công       |
+| TC-AUTH-02 | Trùng username      | username đã tồn tại            | `Username already exists` |
+| TC-AUTH-03 | Trùng email         | email đã tồn tại               | `Email already exists`    |
+| TC-AUTH-04 | Email sai định dạng | `email = abc`                  | 400 Bad Request           |
+| TC-AUTH-05 | Thiếu username      | không gửi username             | 400 Bad Request           |
+| TC-AUTH-06 | Thiếu password      | không gửi password             | 400 Bad Request           |
 
 ---
 
-## 2.2 Đăng nhập
+## 3.2 Đăng nhập
 
 ### Mục đích
 
-Chức năng này dùng để xác thực tài khoản. Nếu đăng nhập đúng, hệ thống cấp `accessToken` và `refreshToken`.
+Chức năng đăng nhập dùng để xác thực người dùng. Nếu email và password đúng, hệ thống cấp `accessToken` và `refreshToken`.
 
 ### API
 
@@ -113,19 +166,39 @@ Client gửi email và password lên `AuthController.login()`.
 
 Controller gọi `UserService.login()`.
 
-Trong service, hệ thống tìm user theo email bằng `findByEmail()`.
+Trong `UserServiceImpl.login()`, hệ thống tìm user theo email bằng `userRepository.findByEmail()`.
 
-Nếu email không tồn tại, hệ thống trả lỗi `Email not found`.
+Nếu không tìm thấy email, hệ thống trả lỗi `Email not found`.
 
-Nếu email tồn tại, hệ thống dùng `passwordEncoder.matches()` để so sánh password người dùng nhập với password đã mã hóa trong database.
+Nếu tìm thấy user, hệ thống dùng `passwordEncoder.matches()` để so sánh password người dùng nhập với password đã mã hóa trong database.
 
-Nếu password sai, hệ thống trả lỗi `Invalid password`.
+Nếu password sai, trả lỗi `Invalid password`.
 
-Nếu đúng, hệ thống dùng `JwtService.generateToken()` để tạo access token.
+Nếu password đúng, hệ thống load user bằng `CustomUserDetailsService`.
 
-Sau đó hệ thống tạo refresh token bằng `RefreshTokenService.createRefreshToken()` và lưu vào bảng `refresh_tokens`.
+Sau đó `JwtService.generateToken()` sinh access token.
+
+Tiếp theo `RefreshTokenService.createRefreshToken()` tạo refresh token và lưu vào bảng `refresh_tokens`.
 
 Cuối cùng trả về `AuthResponse`.
+
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gửi LoginRequest] --> B[AuthController.login]
+    B --> C[UserServiceImpl.login]
+    C --> D[UserRepository.findByEmail]
+    D --> E{Email tồn tại?}
+    E -- Không --> F[Trả lỗi Email not found]
+    E -- Có --> G{Password đúng?}
+    G -- Không --> H[Trả lỗi Invalid password]
+    G -- Có --> I[Load UserDetails]
+    I --> J[JwtService.generateToken]
+    J --> K[RefreshTokenService.createRefreshToken]
+    K --> L[(Bảng refresh_tokens)]
+    L --> M[Trả AuthResponse]
+```
 
 ### Response thành công
 
@@ -142,17 +215,17 @@ Cuối cùng trả về `AuthResponse`.
 
 ### Test case
 
-| Mã          | Trường hợp          | Dữ liệu test        | Kết quả mong đợi                |
+| Mã test     | Trường hợp          | Dữ liệu test        | Kết quả mong đợi                |
 | ----------- | ------------------- | ------------------- | ------------------------------- |
 | TC-LOGIN-01 | Login thành công    | email/password đúng | Trả accessToken và refreshToken |
-| TC-LOGIN-02 | Sai email           | email không tồn tại | `Email not found`               |
-| TC-LOGIN-03 | Sai password        | password sai        | `Invalid password`              |
-| TC-LOGIN-04 | Email sai định dạng | email = `abc`       | 400 Bad Request                 |
+| TC-LOGIN-02 | Email không tồn tại | email sai           | `Email not found`               |
+| TC-LOGIN-03 | Password sai        | password sai        | `Invalid password`              |
+| TC-LOGIN-04 | Email sai định dạng | `email = abc`       | 400 Bad Request                 |
 | TC-LOGIN-05 | Thiếu password      | không gửi password  | 400 Bad Request                 |
 
 ---
 
-## 2.3 Refresh Token
+## 3.3 Refresh Token
 
 ### Mục đích
 
@@ -178,15 +251,33 @@ Client gửi refresh token lên `AuthController.refreshToken()`.
 
 Controller gọi `RefreshTokenService.verifyRefreshToken()`.
 
-Service tìm refresh token trong database bằng `findByToken()`.
+Service tìm refresh token trong database bằng `refreshTokenRepository.findByToken()`.
 
-Nếu token không tồn tại, trả lỗi `Refresh token not found`.
+Nếu token không tồn tại, hệ thống trả lỗi `Refresh token not found`.
 
-Nếu token đã hết hạn, hệ thống xóa token khỏi database và trả lỗi `Refresh token expired`.
+Nếu token tồn tại nhưng đã hết hạn, hệ thống xóa token đó khỏi database và trả lỗi `Refresh token expired`.
 
-Nếu token hợp lệ, hệ thống lấy user từ refresh token, load user bằng email, tạo access token mới bằng `JwtService.generateToken()`.
+Nếu token hợp lệ, hệ thống lấy user từ refresh token, load user theo email, tạo access token mới bằng `JwtService.generateToken()`.
 
-Sau đó trả về access token mới và refresh token cũ.
+Cuối cùng trả về `RefreshTokenResponse`.
+
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gửi refreshToken] --> B[AuthController.refreshToken]
+    B --> C[RefreshTokenService.verifyRefreshToken]
+    C --> D[RefreshTokenRepository.findByToken]
+    D --> E{Token tồn tại?}
+    E -- Không --> F[Trả lỗi Refresh token not found]
+    E -- Có --> G{Token hết hạn?}
+    G -- Có --> H[Xóa token khỏi DB]
+    H --> I[Trả lỗi Refresh token expired]
+    G -- Không --> J[Lấy User từ RefreshToken]
+    J --> K[Load UserDetails]
+    K --> L[JwtService.generateToken]
+    L --> M[Trả AccessToken mới]
+```
 
 ### Response thành công
 
@@ -199,16 +290,16 @@ Sau đó trả về access token mới và refresh token cũ.
 
 ### Test case
 
-| Mã            | Trường hợp          | Dữ liệu test        | Kết quả mong đợi          |
-| ------------- | ------------------- | ------------------- | ------------------------- |
-| TC-REFRESH-01 | Refresh thành công  | refreshToken hợp lệ | Trả accessToken mới       |
-| TC-REFRESH-02 | Token không tồn tại | token sai           | `Refresh token not found` |
-| TC-REFRESH-03 | Token hết hạn       | token expired       | `Refresh token expired`   |
-| TC-REFRESH-04 | Body rỗng           | không gửi token     | Lỗi xử lý token           |
+| Mã test       | Trường hợp                  | Kết quả mong đợi          |
+| ------------- | --------------------------- | ------------------------- |
+| TC-REFRESH-01 | Refresh token hợp lệ        | Trả accessToken mới       |
+| TC-REFRESH-02 | Refresh token không tồn tại | `Refresh token not found` |
+| TC-REFRESH-03 | Refresh token hết hạn       | `Refresh token expired`   |
+| TC-REFRESH-04 | Body rỗng                   | Lỗi xử lý token           |
 
 ---
 
-## 2.4 Logout
+## 3.4 Logout
 
 ### Mục đích
 
@@ -234,11 +325,25 @@ Client gửi refresh token lên `AuthController.logout()`.
 
 Controller gọi `RefreshTokenService.revokeRefreshToken()`.
 
-Service tìm refresh token bằng `findByToken()`.
+Service tìm refresh token bằng `refreshTokenRepository.findByToken()`.
 
-Nếu tồn tại, hệ thống xóa token khỏi bảng `refresh_tokens`.
+Nếu refresh token tồn tại, hệ thống xóa token khỏi bảng `refresh_tokens`.
 
-Sau khi xóa, refresh token đó không thể dùng để lấy access token mới nữa.
+Sau khi logout, refresh token đó không còn dùng được để lấy access token mới.
+
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gửi refreshToken] --> B[AuthController.logout]
+    B --> C[RefreshTokenService.revokeRefreshToken]
+    C --> D[RefreshTokenRepository.findByToken]
+    D --> E{Token tồn tại?}
+    E -- Không --> F[Trả lỗi Refresh token not found]
+    E -- Có --> G[RefreshTokenRepository.delete]
+    G --> H[(Xóa token khỏi DB)]
+    H --> I[Trả Logout successful]
+```
 
 ### Response thành công
 
@@ -248,19 +353,19 @@ Logout successful
 
 ### Test case
 
-| Mã           | Trường hợp                 | Dữ liệu test         | Kết quả mong đợi          |
-| ------------ | -------------------------- | -------------------- | ------------------------- |
-| TC-LOGOUT-01 | Logout thành công          | refreshToken hợp lệ  | `Logout successful`       |
-| TC-LOGOUT-02 | Token không tồn tại        | token sai            | `Refresh token not found` |
-| TC-LOGOUT-03 | Logout xong dùng lại token | dùng refreshToken cũ | Không refresh được nữa    |
+| Mã test      | Trường hợp                | Kết quả mong đợi          |
+| ------------ | ------------------------- | ------------------------- |
+| TC-LOGOUT-01 | Logout thành công         | `Logout successful`       |
+| TC-LOGOUT-02 | Token không tồn tại       | `Refresh token not found` |
+| TC-LOGOUT-03 | Dùng lại token sau logout | Không refresh được nữa    |
 
 ---
 
-## 2.5 Đổi mật khẩu
+## 3.5 Đổi mật khẩu
 
 ### Mục đích
 
-Cho phép người dùng đã đăng nhập đổi mật khẩu hiện tại sang mật khẩu mới.
+Cho phép người dùng đã đăng nhập đổi mật khẩu.
 
 ### API
 
@@ -295,13 +400,35 @@ Filter giải mã token, lấy email người dùng, load user và đưa thông 
 
 Controller gọi `UserService.changePassword(email, request)`.
 
-Service tìm user theo email bằng `findByEmail()`.
+Service tìm user theo email bằng `userRepository.findByEmail()`.
 
 Sau đó kiểm tra mật khẩu cũ bằng `passwordEncoder.matches()`.
 
-Nếu mật khẩu cũ sai, trả lỗi `Old password is incorrect`.
+Nếu mật khẩu cũ sai, hệ thống trả lỗi `Old password is incorrect`.
 
-Nếu đúng, hệ thống mã hóa mật khẩu mới bằng `passwordEncoder.encode()` rồi lưu lại vào database.
+Nếu mật khẩu cũ đúng, hệ thống mã hóa mật khẩu mới bằng `passwordEncoder.encode()`.
+
+Cuối cùng lưu password mới vào database.
+
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gửi token và ChangePasswordRequest] --> B[JwtAuthenticationFilter]
+    B --> C[Giải mã token lấy email]
+    C --> D[SecurityContextHolder]
+    D --> E[AuthController.changePassword]
+    E --> F[UserServiceImpl.changePassword]
+    F --> G[UserRepository.findByEmail]
+    G --> H{User tồn tại?}
+    H -- Không --> I[Trả lỗi User not found]
+    H -- Có --> J{Old password đúng?}
+    J -- Không --> K[Trả lỗi Old password is incorrect]
+    J -- Có --> L[Mã hóa newPassword]
+    L --> M[UserRepository.save]
+    M --> N[(Cập nhật users.password)]
+    N --> O[Trả Password changed successfully]
+```
 
 ### Response thành công
 
@@ -311,22 +438,22 @@ Password changed successfully
 
 ### Test case
 
-| Mã           | Trường hợp                             | Dữ liệu test        | Kết quả mong đợi                |
-| ------------ | -------------------------------------- | ------------------- | ------------------------------- |
-| TC-CHANGE-01 | Đổi mật khẩu thành công                | oldPassword đúng    | `Password changed successfully` |
-| TC-CHANGE-02 | Sai mật khẩu cũ                        | oldPassword sai     | `Old password is incorrect`     |
-| TC-CHANGE-03 | Không gửi token                        | thiếu Authorization | 401 Unauthorized                |
-| TC-CHANGE-04 | Token sai                              | token không hợp lệ  | 401 Unauthorized                |
-| TC-CHANGE-05 | Đăng nhập bằng mật khẩu cũ sau khi đổi | password cũ         | Login fail                      |
-| TC-CHANGE-06 | Đăng nhập bằng mật khẩu mới            | password mới        | Login thành công                |
+| Mã test      | Trường hợp                         | Kết quả mong đợi                |
+| ------------ | ---------------------------------- | ------------------------------- |
+| TC-CHANGE-01 | Đổi mật khẩu thành công            | `Password changed successfully` |
+| TC-CHANGE-02 | Sai mật khẩu cũ                    | `Old password is incorrect`     |
+| TC-CHANGE-03 | Không gửi token                    | 401 Unauthorized                |
+| TC-CHANGE-04 | Token sai                          | 401 Unauthorized                |
+| TC-CHANGE-05 | Login bằng password cũ sau khi đổi | Login fail                      |
+| TC-CHANGE-06 | Login bằng password mới            | Login thành công                |
 
 ---
 
-## 2.6 Quên mật khẩu
+## 3.6 Quên mật khẩu
 
 ### Mục đích
 
-Chức năng này dùng để reset password khi người dùng quên mật khẩu.
+Reset password khi người dùng quên mật khẩu.
 
 ### API
 
@@ -348,15 +475,31 @@ Client gửi email lên `AuthController.forgotPassword()`.
 
 Controller gọi `UserService.forgotPassword(email)`.
 
-Service tìm user theo email bằng `findByEmail()`.
+Service tìm user theo email bằng `userRepository.findByEmail()`.
 
-Nếu không tìm thấy email, trả lỗi `Email not found`.
+Nếu email không tồn tại, hệ thống trả lỗi `Email not found`.
 
-Nếu tìm thấy, hệ thống sinh mật khẩu mới theo dạng `Job + số ngẫu nhiên`.
+Nếu email tồn tại, hệ thống sinh mật khẩu mới theo dạng `Job + số`.
 
-Sau đó password mới được mã hóa bằng `passwordEncoder.encode()` và lưu vào database.
+Sau đó mật khẩu mới được mã hóa bằng `passwordEncoder.encode()`.
 
-Cuối cùng hệ thống trả mật khẩu mới cho client.
+Cuối cùng lưu mật khẩu mới vào database và trả mật khẩu mới cho client.
+
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gửi email] --> B[AuthController.forgotPassword]
+    B --> C[UserServiceImpl.forgotPassword]
+    C --> D[UserRepository.findByEmail]
+    D --> E{Email tồn tại?}
+    E -- Không --> F[Trả lỗi Email not found]
+    E -- Có --> G[Sinh mật khẩu mới]
+    G --> H[Mã hóa mật khẩu mới]
+    H --> I[UserRepository.save]
+    I --> J[(Cập nhật users.password)]
+    J --> K[Trả New password]
+```
 
 ### Response thành công
 
@@ -366,18 +509,20 @@ New password: Job5732
 
 ### Test case
 
-| Mã           | Trường hợp                  | Dữ liệu test  | Kết quả mong đợi  |
-| ------------ | --------------------------- | ------------- | ----------------- |
-| TC-FORGOT-01 | Reset thành công            | email tồn tại | Trả password mới  |
-| TC-FORGOT-02 | Email không tồn tại         | email sai     | `Email not found` |
-| TC-FORGOT-03 | Đăng nhập bằng password cũ  | password cũ   | Login fail        |
-| TC-FORGOT-04 | Đăng nhập bằng password mới | password mới  | Login thành công  |
+| Mã test      | Trường hợp              | Kết quả mong đợi  |
+| ------------ | ----------------------- | ----------------- |
+| TC-FORGOT-01 | Reset thành công        | Trả password mới  |
+| TC-FORGOT-02 | Email không tồn tại     | `Email not found` |
+| TC-FORGOT-03 | Login bằng password cũ  | Login fail        |
+| TC-FORGOT-04 | Login bằng password mới | Login thành công  |
 
 ---
 
-# 3. USER MODULE
+# 4. USER MODULE
 
-## 3.1 Lấy danh sách user
+---
+
+## 4.1 Lấy danh sách user
 
 ### API
 
@@ -393,32 +538,38 @@ Controller gọi `UserService.getAllUsers()`.
 
 Service gọi `userRepository.findAll()` để lấy toàn bộ user.
 
-Sau đó dữ liệu entity được map sang `UserResponse` bằng `UserMapper`.
+Danh sách entity `User` được map sang `UserResponse` bằng `UserMapper`.
 
 Kết quả trả về là danh sách user.
 
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gọi GET /users] --> B[UserController.getAllUsers]
+    B --> C[UserServiceImpl.getAllUsers]
+    C --> D[UserRepository.findAll]
+    D --> E[(Bảng users)]
+    E --> F[Map User sang UserResponse]
+    F --> G[Trả List UserResponse]
+```
+
 ### Test case
 
-| Mã         | Trường hợp                        | Kết quả mong đợi   |
-| ---------- | --------------------------------- | ------------------ |
-| TC-USER-01 | Có user trong DB                  | Trả danh sách user |
-| TC-USER-02 | DB chưa có user                   | Trả list rỗng      |
-| TC-USER-03 | Không gửi token nếu API protected | 401 Unauthorized   |
+| Mã test    | Trường hợp                          | Kết quả mong đợi   |
+| ---------- | ----------------------------------- | ------------------ |
+| TC-USER-01 | Có user trong DB                    | Trả danh sách user |
+| TC-USER-02 | Không có user                       | Trả list rỗng      |
+| TC-USER-03 | API protected nhưng không gửi token | 401 Unauthorized   |
 
 ---
 
-## 3.2 Lấy user theo ID
+## 4.2 Lấy user theo ID
 
 ### API
 
 ```http
 GET /api/v1/users/{id}
-```
-
-Ví dụ:
-
-```http
-GET /api/v1/users/1
 ```
 
 ### Luồng hoạt động
@@ -429,11 +580,24 @@ Service gọi `userRepository.findById(id)`.
 
 Nếu tìm thấy user, hệ thống map sang `UserResponse`.
 
-Nếu không tìm thấy, ném `ResourceNotFoundException`.
+Nếu không tìm thấy, hệ thống ném `ResourceNotFoundException`.
+
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gọi GET /users/id] --> B[UserController.getUserById]
+    B --> C[UserServiceImpl.getUserById]
+    C --> D[UserRepository.findById]
+    D --> E{User tồn tại?}
+    E -- Không --> F[Trả lỗi User not found with id]
+    E -- Có --> G[Map sang UserResponse]
+    G --> H[Trả UserResponse]
+```
 
 ### Test case
 
-| Mã         | Trường hợp       | Kết quả mong đợi         |
+| Mã test    | Trường hợp       | Kết quả mong đợi         |
 | ---------- | ---------------- | ------------------------ |
 | TC-USER-04 | ID tồn tại       | Trả thông tin user       |
 | TC-USER-05 | ID không tồn tại | `User not found with id` |
@@ -441,7 +605,7 @@ Nếu không tìm thấy, ném `ResourceNotFoundException`.
 
 ---
 
-## 3.3 Xóa user
+## 4.3 Xóa user
 
 ### API
 
@@ -453,11 +617,25 @@ DELETE /api/v1/users/{id}
 
 Controller nhận id.
 
-Service tìm user bằng `findById()`.
+Service tìm user bằng `userRepository.findById(id)`.
 
-Nếu user tồn tại, gọi `userRepository.delete(user)`.
+Nếu user không tồn tại, trả lỗi.
 
-Nếu không tồn tại, trả lỗi.
+Nếu user tồn tại, gọi `userRepository.delete(user)` để xóa.
+
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gọi DELETE /users/id] --> B[UserController.deleteUser]
+    B --> C[UserServiceImpl.deleteUser]
+    C --> D[UserRepository.findById]
+    D --> E{User tồn tại?}
+    E -- Không --> F[Trả lỗi User not found with id]
+    E -- Có --> G[UserRepository.delete]
+    G --> H[(Xóa user khỏi DB)]
+    H --> I[Trả User deleted successfully]
+```
 
 ### Response thành công
 
@@ -467,7 +645,7 @@ User deleted successfully
 
 ### Test case
 
-| Mã         | Trường hợp             | Kết quả mong đợi            |
+| Mã test    | Trường hợp             | Kết quả mong đợi            |
 | ---------- | ---------------------- | --------------------------- |
 | TC-USER-07 | Xóa user tồn tại       | `User deleted successfully` |
 | TC-USER-08 | Xóa user không tồn tại | `User not found with id`    |
@@ -475,7 +653,7 @@ User deleted successfully
 
 ---
 
-## 3.4 Tìm kiếm user
+## 4.4 Tìm kiếm user
 
 ### API
 
@@ -485,15 +663,27 @@ GET /api/v1/users/search?keyword=son
 
 ### Luồng hoạt động
 
-Controller lấy keyword từ query param.
+Controller lấy `keyword` từ query param.
 
-Service gọi `findByUsernameContainingIgnoreCase(keyword)`.
+Service gọi `userRepository.findByUsernameContainingIgnoreCase(keyword)`.
 
 Hệ thống tìm user có username chứa keyword, không phân biệt hoa thường.
 
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gửi keyword] --> B[UserController.searchUsers]
+    B --> C[UserServiceImpl.searchUsers]
+    C --> D[UserRepository.findByUsernameContainingIgnoreCase]
+    D --> E[(Bảng users)]
+    E --> F[Map sang UserResponse]
+    F --> G[Trả danh sách user phù hợp]
+```
+
 ### Test case
 
-| Mã         | Trường hợp                        | Kết quả mong đợi      |
+| Mã test    | Trường hợp                        | Kết quả mong đợi      |
 | ---------- | --------------------------------- | --------------------- |
 | TC-USER-10 | Keyword có kết quả                | Trả danh sách phù hợp |
 | TC-USER-11 | Keyword không có kết quả          | List rỗng             |
@@ -501,7 +691,7 @@ Hệ thống tìm user có username chứa keyword, không phân biệt hoa thư
 
 ---
 
-## 3.5 Phân trang user
+## 4.5 Phân trang user
 
 ### API
 
@@ -519,19 +709,34 @@ Repository gọi `findAll(pageable)`.
 
 Kết quả trả về dạng `Page<UserResponse>`.
 
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gửi page và size] --> B[UserController.getUsers]
+    B --> C[UserServiceImpl.getUsers]
+    C --> D[PageRequest.of]
+    D --> E[UserRepository.findAll pageable]
+    E --> F[(Bảng users)]
+    F --> G[Map sang Page UserResponse]
+    G --> H[Trả dữ liệu phân trang]
+```
+
 ### Test case
 
-| Mã         | Trường hợp             | Kết quả mong đợi            |
+| Mã test    | Trường hợp             | Kết quả mong đợi            |
 | ---------- | ---------------------- | --------------------------- |
 | TC-USER-13 | page=0 size=5          | Trả 5 user đầu              |
-| TC-USER-14 | page lớn hơn số trang  | content rỗng                |
+| TC-USER-14 | page vượt quá số trang | content rỗng                |
 | TC-USER-15 | Không truyền page/size | Dùng mặc định page=0 size=5 |
 
 ---
 
-# 4. JOB MODULE
+# 5. JOB MODULE
 
-## 4.1 Tạo job
+---
+
+## 5.1 Tạo job
 
 ### API
 
@@ -560,33 +765,33 @@ Controller gọi `JobService.createJob()`.
 
 Service kiểm tra employer có tồn tại không bằng `userRepository.findById(employerId)`.
 
-Nếu employer không tồn tại, trả lỗi `Employer not found`.
+Nếu employer không tồn tại, hệ thống trả lỗi `Employer not found`.
 
-Nếu tồn tại, hệ thống tạo entity `Job`.
+Nếu employer tồn tại, hệ thống tạo entity `Job`.
 
 Trạng thái ban đầu của job là `PENDING`, nghĩa là job đang chờ admin duyệt.
 
-Sau đó gọi `jobRepository.save(job)` để lưu vào database.
+Sau đó job được lưu vào database bằng `jobRepository.save(job)`.
 
-### Response thành công
+### Sơ đồ luồng hoạt động
 
-```json
-{
-  "id": 1,
-  "title": "Java Developer",
-  "description": "Spring Boot backend",
-  "salary": 1500,
-  "location": "Ha Noi",
-  "deadline": "2026-12-31",
-  "status": "PENDING",
-  "employerId": 2,
-  "employerUsername": "employer01"
-}
+```mermaid
+flowchart TD
+    A[Client gửi CreateJobRequest] --> B[JobController.createJob]
+    B --> C[JobServiceImpl.createJob]
+    C --> D[UserRepository.findById employerId]
+    D --> E{Employer tồn tại?}
+    E -- Không --> F[Trả lỗi Employer not found]
+    E -- Có --> G[Tạo Job entity]
+    G --> H[Set status PENDING]
+    H --> I[JobRepository.save]
+    I --> J[(Bảng jobs)]
+    J --> K[Map sang JobResponse]
 ```
 
 ### Test case
 
-| Mã        | Trường hợp             | Kết quả mong đợi             |
+| Mã test   | Trường hợp             | Kết quả mong đợi             |
 | --------- | ---------------------- | ---------------------------- |
 | TC-JOB-01 | Tạo job hợp lệ         | Job được tạo, status PENDING |
 | TC-JOB-02 | Employer không tồn tại | `Employer not found`         |
@@ -596,7 +801,7 @@ Sau đó gọi `jobRepository.save(job)` để lưu vào database.
 
 ---
 
-## 4.2 Lấy danh sách job
+## 5.2 Lấy danh sách job
 
 ### API
 
@@ -610,18 +815,30 @@ Controller gọi `JobService.getAllJobs()`.
 
 Service gọi `jobRepository.findAll()`.
 
-Danh sách job được map sang `JobResponse`.
+Danh sách `Job` được map sang danh sách `JobResponse`.
+
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gọi GET /jobs] --> B[JobController.getAllJobs]
+    B --> C[JobServiceImpl.getAllJobs]
+    C --> D[JobRepository.findAll]
+    D --> E[(Bảng jobs)]
+    E --> F[Map sang JobResponse]
+    F --> G[Trả List JobResponse]
+```
 
 ### Test case
 
-| Mã        | Trường hợp   | Kết quả mong đợi  |
+| Mã test   | Trường hợp   | Kết quả mong đợi  |
 | --------- | ------------ | ----------------- |
 | TC-JOB-06 | Có job       | Trả danh sách job |
 | TC-JOB-07 | Không có job | List rỗng         |
 
 ---
 
-## 4.3 Lấy job theo ID
+## 5.3 Lấy job theo ID
 
 ### API
 
@@ -629,24 +846,29 @@ Danh sách job được map sang `JobResponse`.
 GET /api/v1/jobs/{id}
 ```
 
-### Luồng hoạt động
+### Sơ đồ luồng hoạt động
 
-Service gọi `jobRepository.findById(id)`.
-
-Nếu tìm thấy, trả `JobResponse`.
-
-Nếu không thấy, trả `Job not found`.
+```mermaid
+flowchart TD
+    A[Client gọi GET /jobs/id] --> B[JobController.getJobById]
+    B --> C[JobServiceImpl.getJobById]
+    C --> D[JobRepository.findById]
+    D --> E{Job tồn tại?}
+    E -- Không --> F[Trả lỗi Job not found]
+    E -- Có --> G[Map sang JobResponse]
+    G --> H[Trả JobResponse]
+```
 
 ### Test case
 
-| Mã        | Trường hợp       | Kết quả mong đợi  |
+| Mã test   | Trường hợp       | Kết quả mong đợi  |
 | --------- | ---------------- | ----------------- |
 | TC-JOB-08 | ID tồn tại       | Trả thông tin job |
 | TC-JOB-09 | ID không tồn tại | `Job not found`   |
 
 ---
 
-## 4.4 Cập nhật job
+## 5.4 Cập nhật job
 
 ### API
 
@@ -666,21 +888,24 @@ PUT /api/v1/jobs/{id}
 }
 ```
 
-### Luồng hoạt động
+### Sơ đồ luồng hoạt động
 
-Controller nhận id và body.
-
-Service tìm job theo id.
-
-Nếu job không tồn tại, trả lỗi.
-
-Nếu tồn tại, cập nhật các trường title, description, salary, location, deadline.
-
-Sau đó lưu lại database.
+```mermaid
+flowchart TD
+    A[Client gửi UpdateJobRequest] --> B[JobController.updateJob]
+    B --> C[JobServiceImpl.updateJob]
+    C --> D[JobRepository.findById]
+    D --> E{Job tồn tại?}
+    E -- Không --> F[Trả lỗi Job not found]
+    E -- Có --> G[Cập nhật title description salary location deadline]
+    G --> H[JobRepository.save]
+    H --> I[(Cập nhật bảng jobs)]
+    I --> J[Trả JobResponse]
+```
 
 ### Test case
 
-| Mã        | Trường hợp        | Kết quả mong đợi  |
+| Mã test   | Trường hợp        | Kết quả mong đợi  |
 | --------- | ----------------- | ----------------- |
 | TC-JOB-10 | Update thành công | Job được cập nhật |
 | TC-JOB-11 | Job không tồn tại | `Job not found`   |
@@ -688,7 +913,7 @@ Sau đó lưu lại database.
 
 ---
 
-## 4.5 Xóa job
+## 5.5 Xóa job
 
 ### API
 
@@ -696,22 +921,30 @@ Sau đó lưu lại database.
 DELETE /api/v1/jobs/{id}
 ```
 
-### Response
+### Sơ đồ luồng hoạt động
 
-```text
-Job deleted successfully
+```mermaid
+flowchart TD
+    A[Client gọi DELETE /jobs/id] --> B[JobController.deleteJob]
+    B --> C[JobServiceImpl.deleteJob]
+    C --> D[JobRepository.findById]
+    D --> E{Job tồn tại?}
+    E -- Không --> F[Trả lỗi Job not found]
+    E -- Có --> G[JobRepository.delete]
+    G --> H[(Xóa job khỏi DB)]
+    H --> I[Trả Job deleted successfully]
 ```
 
 ### Test case
 
-| Mã        | Trường hợp            | Kết quả mong đợi |
-| --------- | --------------------- | ---------------- |
-| TC-JOB-13 | Xóa job tồn tại       | Thành công       |
-| TC-JOB-14 | Xóa job không tồn tại | `Job not found`  |
+| Mã test   | Trường hợp            | Kết quả mong đợi           |
+| --------- | --------------------- | -------------------------- |
+| TC-JOB-13 | Xóa job tồn tại       | `Job deleted successfully` |
+| TC-JOB-14 | Xóa job không tồn tại | `Job not found`            |
 
 ---
 
-## 4.6 Approve job
+## 5.6 Approve job
 
 ### API
 
@@ -721,24 +954,39 @@ PUT /api/v1/jobs/{id}/approve
 
 ### Luồng hoạt động
 
-Admin gọi API approve.
+Admin gọi API duyệt job.
 
-Service tìm job.
+Service tìm job theo id.
 
-Nếu có, set status từ `PENDING` sang `APPROVED`.
+Nếu job tồn tại, hệ thống set status thành `APPROVED`.
 
 Sau đó lưu lại database.
 
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Admin gọi approve] --> B[JobController.approveJob]
+    B --> C[JobServiceImpl.approveJob]
+    C --> D[JobRepository.findById]
+    D --> E{Job tồn tại?}
+    E -- Không --> F[Trả lỗi Job not found]
+    E -- Có --> G[Set status APPROVED]
+    G --> H[JobRepository.save]
+    H --> I[(Cập nhật jobs.status)]
+    I --> J[Trả JobResponse]
+```
+
 ### Test case
 
-| Mã        | Trường hợp          | Kết quả mong đợi  |
+| Mã test   | Trường hợp          | Kết quả mong đợi  |
 | --------- | ------------------- | ----------------- |
 | TC-JOB-15 | Approve job tồn tại | status = APPROVED |
 | TC-JOB-16 | Job không tồn tại   | `Job not found`   |
 
 ---
 
-## 4.7 Reject job
+## 5.7 Reject job
 
 ### API
 
@@ -746,22 +994,31 @@ Sau đó lưu lại database.
 PUT /api/v1/jobs/{id}/reject
 ```
 
-### Luồng hoạt động
+### Sơ đồ luồng hoạt động
 
-Service tìm job.
-
-Nếu có, set status = `REJECTED`.
+```mermaid
+flowchart TD
+    A[Admin gọi reject] --> B[JobController.rejectJob]
+    B --> C[JobServiceImpl.rejectJob]
+    C --> D[JobRepository.findById]
+    D --> E{Job tồn tại?}
+    E -- Không --> F[Trả lỗi Job not found]
+    E -- Có --> G[Set status REJECTED]
+    G --> H[JobRepository.save]
+    H --> I[(Cập nhật jobs.status)]
+    I --> J[Trả JobResponse]
+```
 
 ### Test case
 
-| Mã        | Trường hợp         | Kết quả mong đợi  |
+| Mã test   | Trường hợp         | Kết quả mong đợi  |
 | --------- | ------------------ | ----------------- |
 | TC-JOB-17 | Reject job tồn tại | status = REJECTED |
 | TC-JOB-18 | Job không tồn tại  | `Job not found`   |
 
 ---
 
-## 4.8 Search job
+## 5.8 Search job
 
 ### API
 
@@ -769,15 +1026,21 @@ Nếu có, set status = `REJECTED`.
 GET /api/v1/jobs/search?keyword=java
 ```
 
-### Luồng hoạt động
+### Sơ đồ luồng hoạt động
 
-Repository gọi `findByTitleContainingIgnoreCase(keyword)`.
-
-Hệ thống tìm job có title chứa keyword.
+```mermaid
+flowchart TD
+    A[Client gửi keyword] --> B[JobController.searchJobs]
+    B --> C[JobServiceImpl.searchJobs]
+    C --> D[JobRepository.findByTitleContainingIgnoreCase]
+    D --> E[(Bảng jobs)]
+    E --> F[Map sang JobResponse]
+    F --> G[Trả danh sách job phù hợp]
+```
 
 ### Test case
 
-| Mã        | Trường hợp               | Kết quả mong đợi  |
+| Mã test   | Trường hợp               | Kết quả mong đợi  |
 | --------- | ------------------------ | ----------------- |
 | TC-JOB-19 | Keyword có kết quả       | Trả danh sách job |
 | TC-JOB-20 | Keyword không có kết quả | List rỗng         |
@@ -785,7 +1048,7 @@ Hệ thống tìm job có title chứa keyword.
 
 ---
 
-## 4.9 Phân trang job
+## 5.9 Phân trang job
 
 ### API
 
@@ -793,9 +1056,22 @@ Hệ thống tìm job có title chứa keyword.
 GET /api/v1/jobs/paging?page=0&size=5
 ```
 
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gửi page và size] --> B[JobController.getJobs]
+    B --> C[JobServiceImpl.getJobs]
+    C --> D[PageRequest.of]
+    D --> E[JobRepository.findAll pageable]
+    E --> F[(Bảng jobs)]
+    F --> G[Map sang Page JobResponse]
+    G --> H[Trả dữ liệu phân trang]
+```
+
 ### Test case
 
-| Mã        | Trường hợp             | Kết quả mong đợi |
+| Mã test   | Trường hợp             | Kết quả mong đợi |
 | --------- | ---------------------- | ---------------- |
 | TC-JOB-22 | page=0 size=5          | Trả 5 job đầu    |
 | TC-JOB-23 | page vượt quá số trang | content rỗng     |
@@ -803,9 +1079,11 @@ GET /api/v1/jobs/paging?page=0&size=5
 
 ---
 
-# 5. APPLICATION MODULE
+# 6. APPLICATION MODULE
 
-## 5.1 Ứng tuyển job
+---
+
+## 6.1 Ứng tuyển job
 
 ### API
 
@@ -831,15 +1109,15 @@ Controller gọi `ApplicationService.applyJob()`.
 
 Service tìm candidate bằng `userRepository.findById(candidateId)`.
 
-Nếu không tồn tại, trả `Candidate not found`.
+Nếu candidate không tồn tại, hệ thống trả lỗi `Candidate not found`.
 
-Service tìm job bằng `jobRepository.findById(jobId)`.
+Service tiếp tục tìm job bằng `jobRepository.findById(jobId)`.
 
-Nếu không tồn tại, trả `Job not found`.
+Nếu job không tồn tại, hệ thống trả lỗi `Job not found`.
 
 Nếu cả candidate và job đều hợp lệ, hệ thống tạo entity `Application`.
 
-Application có:
+Application được set:
 
 * candidate
 * job
@@ -849,24 +1127,28 @@ Application có:
 
 Sau đó lưu vào bảng `applications`.
 
-### Response thành công
+### Sơ đồ luồng hoạt động
 
-```json
-{
-  "id": 1,
-  "candidateId": 1,
-  "candidateName": "son",
-  "jobId": 2,
-  "jobTitle": "Java Developer",
-  "coverLetter": "Tôi muốn ứng tuyển vị trí này.",
-  "appliedAt": "2026-06-12T08:00:00",
-  "status": "PENDING"
-}
+```mermaid
+flowchart TD
+    A[Client gửi ApplyJobRequest] --> B[ApplicationController.applyJob]
+    B --> C[ApplicationServiceImpl.applyJob]
+    C --> D[UserRepository.findById candidateId]
+    D --> E{Candidate tồn tại?}
+    E -- Không --> F[Trả lỗi Candidate not found]
+    E -- Có --> G[JobRepository.findById jobId]
+    G --> H{Job tồn tại?}
+    H -- Không --> I[Trả lỗi Job not found]
+    H -- Có --> J[Tạo Application]
+    J --> K[Set status PENDING]
+    K --> L[ApplicationRepository.save]
+    L --> M[(Bảng applications)]
+    M --> N[Trả ApplicationResponse]
 ```
 
 ### Test case
 
-| Mã        | Trường hợp              | Kết quả mong đợi           |
+| Mã test   | Trường hợp              | Kết quả mong đợi           |
 | --------- | ----------------------- | -------------------------- |
 | TC-APP-01 | Apply thành công        | Application status PENDING |
 | TC-APP-02 | Candidate không tồn tại | `Candidate not found`      |
@@ -876,7 +1158,7 @@ Sau đó lưu vào bảng `applications`.
 
 ---
 
-## 5.2 Xem hồ sơ theo candidate
+## 6.2 Xem hồ sơ theo candidate
 
 ### API
 
@@ -884,24 +1166,28 @@ Sau đó lưu vào bảng `applications`.
 GET /api/v1/applications/candidate/{candidateId}
 ```
 
-### Luồng hoạt động
+### Sơ đồ luồng hoạt động
 
-Controller nhận candidateId.
-
-Service gọi `applicationRepository.findByCandidateId(candidateId)`.
-
-Kết quả được map sang danh sách `ApplicationResponse`.
+```mermaid
+flowchart TD
+    A[Client gọi applications/candidate/id] --> B[ApplicationController.getApplicationsByCandidate]
+    B --> C[ApplicationServiceImpl.getApplicationsByCandidate]
+    C --> D[ApplicationRepository.findByCandidateId]
+    D --> E[(Bảng applications)]
+    E --> F[Map sang ApplicationResponse]
+    F --> G[Trả danh sách hồ sơ]
+```
 
 ### Test case
 
-| Mã        | Trường hợp               | Kết quả mong đợi          |
+| Mã test   | Trường hợp               | Kết quả mong đợi          |
 | --------- | ------------------------ | ------------------------- |
 | TC-APP-06 | Candidate có hồ sơ       | Trả danh sách application |
 | TC-APP-07 | Candidate chưa ứng tuyển | List rỗng                 |
 
 ---
 
-## 5.3 Xem hồ sơ theo job
+## 6.3 Xem hồ sơ theo job
 
 ### API
 
@@ -909,22 +1195,28 @@ Kết quả được map sang danh sách `ApplicationResponse`.
 GET /api/v1/applications/job/{jobId}
 ```
 
-### Luồng hoạt động
+### Sơ đồ luồng hoạt động
 
-Service gọi `applicationRepository.findByJobId(jobId)`.
-
-Dùng để employer xem danh sách ứng viên đã nộp vào một job cụ thể.
+```mermaid
+flowchart TD
+    A[Client gọi applications/job/id] --> B[ApplicationController.getApplicationsByJob]
+    B --> C[ApplicationServiceImpl.getApplicationsByJob]
+    C --> D[ApplicationRepository.findByJobId]
+    D --> E[(Bảng applications)]
+    E --> F[Map sang ApplicationResponse]
+    F --> G[Trả danh sách hồ sơ theo job]
+```
 
 ### Test case
 
-| Mã        | Trường hợp           | Kết quả mong đợi    |
+| Mã test   | Trường hợp           | Kết quả mong đợi    |
 | --------- | -------------------- | ------------------- |
 | TC-APP-08 | Job có ứng viên      | Trả danh sách hồ sơ |
 | TC-APP-09 | Job chưa có ứng viên | List rỗng           |
 
 ---
 
-## 5.4 Cập nhật trạng thái hồ sơ
+## 6.4 Cập nhật trạng thái hồ sơ
 
 ### API
 
@@ -944,15 +1236,30 @@ PUT /api/v1/applications/{id}/status
 
 Employer hoặc admin cập nhật trạng thái hồ sơ.
 
-Controller nhận id của application và status mới.
+Controller nhận application id và status mới.
 
-Service tìm application theo id.
+Service tìm application theo id bằng `applicationRepository.findById()`.
 
-Nếu không tồn tại, trả lỗi `Application not found`.
+Nếu application không tồn tại, hệ thống trả lỗi `Application not found`.
 
-Nếu tồn tại, cập nhật status mới và lưu database.
+Nếu tồn tại, hệ thống cập nhật status mới và lưu database.
 
-### Các trạng thái hợp lệ
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gửi status mới] --> B[ApplicationController.updateStatus]
+    B --> C[ApplicationServiceImpl.updateStatus]
+    C --> D[ApplicationRepository.findById]
+    D --> E{Application tồn tại?}
+    E -- Không --> F[Trả lỗi Application not found]
+    E -- Có --> G[Set status mới]
+    G --> H[ApplicationRepository.save]
+    H --> I[(Cập nhật applications.status)]
+    I --> J[Trả ApplicationResponse]
+```
+
+### Status hợp lệ
 
 ```text
 PENDING
@@ -964,7 +1271,7 @@ REJECTED
 
 ### Test case
 
-| Mã        | Trường hợp                | Kết quả mong đợi        |
+| Mã test   | Trường hợp                | Kết quả mong đợi        |
 | --------- | ------------------------- | ----------------------- |
 | TC-APP-10 | Update thành công         | status được cập nhật    |
 | TC-APP-11 | Application không tồn tại | `Application not found` |
@@ -972,9 +1279,11 @@ REJECTED
 
 ---
 
-# 6. FILE MODULE
+# 7. FILE MODULE
 
-## 6.1 Upload CV
+---
+
+## 7.1 Upload CV
 
 ### API
 
@@ -984,33 +1293,37 @@ POST /api/v1/files/upload-cv/{userId}
 
 ### Postman
 
-Chọn tab Body.
+Body chọn `form-data`.
 
-Chọn `form-data`.
-
-Thêm key:
+Key:
 
 ```text
 file
 ```
 
-Type chọn `File`.
+Type:
 
-Sau đó chọn file CV từ máy.
+```text
+File
+```
+
+Value:
+
+Chọn file CV từ máy.
 
 ### Luồng hoạt động
 
 Client gửi file dạng MultipartFile.
 
-Controller nhận `userId` và file.
+Controller nhận `userId` từ path variable và file từ request param.
 
 Controller gọi `FileStorageService.uploadCv(userId, file)`.
 
 Service tìm user bằng `userRepository.findById(userId)`.
 
-Nếu user không tồn tại, trả `User not found`.
+Nếu user không tồn tại, hệ thống trả lỗi `User not found`.
 
-Nếu tồn tại, hệ thống tạo tên file mới bằng thời gian hiện tại kết hợp với tên file gốc.
+Nếu user tồn tại, hệ thống tạo tên file mới bằng thời gian hiện tại cộng với tên file gốc.
 
 Sau đó tạo thư mục `uploads/cv` nếu chưa tồn tại.
 
@@ -1020,6 +1333,24 @@ Sau khi lưu file thành công, hệ thống cập nhật `cvUrl` của user.
 
 Cuối cùng lưu user lại database.
 
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gửi MultipartFile] --> B[FileController.uploadCv]
+    B --> C[FileStorageServiceImpl.uploadCv]
+    C --> D[UserRepository.findById]
+    D --> E{User tồn tại?}
+    E -- Không --> F[Trả lỗi User not found]
+    E -- Có --> G[Tạo tên file mới]
+    G --> H[Tạo thư mục uploads/cv]
+    H --> I[Ghi file xuống ổ cứng]
+    I --> J[Cập nhật user.cvUrl]
+    J --> K[UserRepository.save]
+    K --> L[(Cập nhật bảng users)]
+    L --> M[Trả đường dẫn file]
+```
+
 ### Response thành công
 
 ```text
@@ -1028,47 +1359,12 @@ uploads/cv/1718171000000_cv.pdf
 
 ### Test case
 
-| Mã         | Trường hợp         | Kết quả mong đợi   |
+| Mã test    | Trường hợp         | Kết quả mong đợi   |
 | ---------- | ------------------ | ------------------ |
 | TC-FILE-01 | Upload thành công  | Trả đường dẫn file |
 | TC-FILE-02 | User không tồn tại | `User not found`   |
 | TC-FILE-03 | Không chọn file    | `Upload failed`    |
 | TC-FILE-04 | File rỗng          | `Upload failed`    |
-
----
-
-# 7. EXCEPTION HANDLING
-
-## Mục đích
-
-Hệ thống dùng `GlobalExceptionHandler` để xử lý lỗi tập trung.
-
-Thay vì mỗi controller tự xử lý lỗi, mọi exception sẽ được đưa về một nơi.
-
-Điều này giúp response lỗi đồng nhất và dễ debug.
-
-### Các lỗi chính
-
-| Exception                       | HTTP Status | Ý nghĩa                |
-| ------------------------------- | ----------- | ---------------------- |
-| ResourceNotFoundException       | 404         | Không tìm thấy dữ liệu |
-| DuplicateResourceException      | 409         | Dữ liệu bị trùng       |
-| BadRequestException             | 400         | Request sai            |
-| UnauthorizedException           | 401         | Chưa xác thực          |
-| ForbiddenException              | 403         | Không đủ quyền         |
-| MethodArgumentNotValidException | 400         | Validation lỗi         |
-| Exception                       | 500         | Lỗi hệ thống           |
-
-### Ví dụ lỗi
-
-```json
-{
-  "timestamp": "2026-06-12T08:00:00",
-  "status": 404,
-  "error": "NOT_FOUND",
-  "message": "Job not found"
-}
-```
 
 ---
 
@@ -1078,16 +1374,29 @@ Thay vì mỗi controller tự xử lý lỗi, mọi exception sẽ được đ�
 
 AOP Logging dùng để ghi lại thời gian thực hiện của các chức năng trong hệ thống.
 
-Thay vì viết log trong từng method, hệ thống dùng `LoggingAspect` để tự động bắt các method trong controller và service.
+Thay vì viết log thủ công trong từng controller hoặc service, hệ thống dùng `LoggingAspect` để tự động bắt các method.
 
-### Pointcut
+### Luồng hoạt động
 
-```java
-execution(* com.example.jobplatformsystem.controller..*(..)) ||
-execution(* com.example.jobplatformsystem.service..*(..))
+Khi người dùng gọi API, request đi vào controller.
+
+Trước khi method controller hoặc service chạy, `LoggingAspect` bắt đầu tính thời gian.
+
+Sau khi method chạy xong, aspect tính tổng thời gian thực thi.
+
+Sau đó ghi log ra console và file `logs/job-platform.log`.
+
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Client gọi API] --> B[Controller Method]
+    B --> C[LoggingAspect bắt đầu timer]
+    C --> D[Service Method chạy]
+    D --> E[LoggingAspect tính thời gian]
+    E --> F[Ghi log ra Console]
+    E --> G[Ghi log ra file job-platform.log]
 ```
-
-Nghĩa là mọi method trong package controller và service đều được log.
 
 ### Ví dụ log
 
@@ -1098,27 +1407,58 @@ JobServiceImpl.createJob executed in 120 ms
 ApplicationServiceImpl.applyJob executed in 80 ms
 ```
 
-### Ý nghĩa
-
-Log này giúp biết chức năng nào chạy nhanh, chức năng nào chạy chậm.
-
-Khi hệ thống có lỗi hiệu năng, ta có thể dựa vào log để tìm điểm nghẽn.
-
 ### Test case
 
-| Mã        | Trường hợp         | Kết quả mong đợi                                       |
+| Mã test   | Trường hợp         | Kết quả mong đợi                                       |
 | --------- | ------------------ | ------------------------------------------------------ |
 | TC-LOG-01 | Gọi API register   | Có log AuthController và UserServiceImpl               |
 | TC-LOG-02 | Gọi API create job | Có log JobController và JobServiceImpl                 |
 | TC-LOG-03 | Gọi API apply job  | Có log ApplicationController và ApplicationServiceImpl |
-| TC-LOG-04 | Gọi API lỗi        | Có log failed hoặc exception                           |
-| TC-LOG-05 | Kiểm tra file log  | Có file `logs/job-platform.log`                        |
+| TC-LOG-04 | Kiểm tra file log  | Có file `logs/job-platform.log`                        |
+| TC-LOG-05 | API lỗi            | Có log lỗi hoặc exception                              |
 
 ---
 
-# 9. KỊCH BẢN TEST POSTMAN HOÀN CHỈNH
+# 9. GLOBAL EXCEPTION HANDLER
 
-## Bước 1: Register Candidate
+## Mục đích
+
+`GlobalExceptionHandler` giúp xử lý lỗi tập trung. Thay vì mỗi controller tự xử lý lỗi, toàn bộ exception được gom về một nơi.
+
+### Sơ đồ luồng hoạt động
+
+```mermaid
+flowchart TD
+    A[Service phát sinh Exception] --> B[GlobalExceptionHandler]
+    B --> C{Loại Exception}
+    C --> D[ResourceNotFoundException - 404]
+    C --> E[DuplicateResourceException - 409]
+    C --> F[BadRequestException - 400]
+    C --> G[UnauthorizedException - 401]
+    C --> H[ForbiddenException - 403]
+    C --> I[Exception - 500]
+    D --> J[Trả ErrorResponse]
+    E --> J
+    F --> J
+    G --> J
+    H --> J
+    I --> J
+```
+
+### Test case
+
+| Mã test  | Trường hợp             | Kết quả mong đợi          |
+| -------- | ---------------------- | ------------------------- |
+| TC-EX-01 | Tìm user không tồn tại | 404 NOT_FOUND             |
+| TC-EX-02 | Đăng ký email trùng    | 409 CONFLICT              |
+| TC-EX-03 | Validation lỗi         | 400 Bad Request           |
+| TC-EX-04 | Lỗi không xác định     | 500 INTERNAL_SERVER_ERROR |
+
+---
+
+# 10. Kịch bản test Postman tổng hợp
+
+## Bước 1: Đăng ký Candidate
 
 ```http
 POST /api/v1/auth/register
@@ -1133,7 +1473,7 @@ POST /api/v1/auth/register
 }
 ```
 
-## Bước 2: Register Employer
+## Bước 2: Đăng ký Employer
 
 ```json
 {
@@ -1146,6 +1486,10 @@ POST /api/v1/auth/register
 
 ## Bước 3: Login Employer
 
+```http
+POST /api/v1/auth/login
+```
+
 ```json
 {
   "email": "employer01@gmail.com",
@@ -1153,9 +1497,9 @@ POST /api/v1/auth/register
 }
 ```
 
-Copy accessToken và refreshToken.
+Copy `accessToken` và `refreshToken`.
 
-## Bước 4: Create Job
+## Bước 4: Tạo Job
 
 ```http
 POST /api/v1/jobs
@@ -1172,7 +1516,7 @@ POST /api/v1/jobs
 }
 ```
 
-## Bước 5: Approve Job
+## Bước 5: Duyệt Job
 
 ```http
 PUT /api/v1/jobs/1/approve
@@ -1193,9 +1537,9 @@ PUT /api/v1/jobs/1/approve
 POST /api/v1/files/upload-cv/1
 ```
 
-Body: form-data, key `file`, type File.
+Body chọn `form-data`, key là `file`, type là `File`.
 
-## Bước 8: Apply Job
+## Bước 8: Candidate Apply Job
 
 ```http
 POST /api/v1/applications/apply
@@ -1209,13 +1553,13 @@ POST /api/v1/applications/apply
 }
 ```
 
-## Bước 9: Employer xem hồ sơ theo job
+## Bước 9: Employer xem hồ sơ theo Job
 
 ```http
 GET /api/v1/applications/job/1
 ```
 
-## Bước 10: Update Application Status
+## Bước 10: Cập nhật trạng thái hồ sơ
 
 ```http
 PUT /api/v1/applications/1/status
@@ -1233,11 +1577,19 @@ PUT /api/v1/applications/1/status
 GET /api/v1/applications/candidate/1
 ```
 
-## Bước 12: Change Password
+## Bước 12: Đổi mật khẩu
 
 ```http
 POST /api/v1/auth/change-password
 ```
+
+Header:
+
+```http
+Authorization: Bearer access-token
+```
+
+Body:
 
 ```json
 {
@@ -1246,7 +1598,7 @@ POST /api/v1/auth/change-password
 }
 ```
 
-## Bước 13: Forgot Password
+## Bước 13: Quên mật khẩu
 
 ```http
 POST /api/v1/auth/forgot-password
@@ -1272,22 +1624,30 @@ POST /api/v1/auth/logout
 
 ---
 
-# 10. KẾT LUẬN
+# 11. Kết luận
 
-Tài liệu này mô tả chi tiết luồng hoạt động của hệ thống Job Platform System.
+Tài liệu này mô tả chi tiết toàn bộ các chức năng hiện có trong hệ thống Job Platform System.
 
-Hệ thống đã có đầy đủ các nhóm chức năng:
+Các chức năng đã được mô tả gồm:
 
-* Xác thực và phân quyền
-* Quản lý người dùng
-* Quản lý việc làm
-* Ứng tuyển việc làm
-* Upload CV
-* Quản lý trạng thái hồ sơ
-* Refresh token
+* Đăng ký
+* Đăng nhập
+* Refresh Token
+* Logout
 * Đổi mật khẩu
 * Quên mật khẩu
-* Ghi log thời gian thực hiện bằng AOP
-* Xử lý lỗi tập trung bằng GlobalExceptionHandler
+* Quản lý user
+* Quản lý job
+* Duyệt job
+* Từ chối job
+* Tìm kiếm job
+* Phân trang job
+* Apply job
+* Xem hồ sơ theo candidate
+* Xem hồ sơ theo job
+* Cập nhật trạng thái hồ sơ
+* Upload CV
+* AOP Logging
+* Global Exception Handler
 
-Hệ thống phù hợp với mô hình RESTful API và có thể dùng làm backend cho website hoặc mobile app tuyển dụng.
+Tài liệu có thể dùng để giải thích luồng hoạt động khi bảo vệ đồ án hoặc làm file hướng dẫn cho người tiếp tục phát triển dự án.
