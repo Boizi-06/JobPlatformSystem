@@ -1,20 +1,21 @@
 package com.example.jobplatformsystem.security;
 
+import com.example.jobplatformsystem.service.TokenBlacklistService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.web.authentication.
-        UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter
@@ -22,6 +23,7 @@ public class JwtAuthenticationFilter
 
     private final JwtService jwtService;
     private final CustomUserDetailsService userDetailsService;
+    private final TokenBlacklistService tokenBlacklistService;
 
     @Override
     protected void doFilterInternal(
@@ -40,13 +42,23 @@ public class JwtAuthenticationFilter
             return;
         }
 
-        String jwt =
-                authHeader.substring(7);
+        String jwt = authHeader.substring(7);
 
-        String email =
-                jwtService.extractUsername(jwt);
+        if (tokenBlacklistService.isBlacklisted(jwt)) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json");
+            response.getWriter().write(
+                    "{\"message\":\"Access token has been revoked\"}"
+            );
+            return;
+        }
 
-        if (email != null) {
+        String email = jwtService.extractUsername(jwt);
+
+        if (email != null
+                && SecurityContextHolder
+                .getContext()
+                .getAuthentication() == null) {
 
             UserDetails userDetails =
                     userDetailsService
@@ -68,7 +80,8 @@ public class JwtAuthenticationFilter
                                 .buildDetails(request)
                 );
 
-                SecurityContextHolder.getContext()
+                SecurityContextHolder
+                        .getContext()
                         .setAuthentication(authToken);
             }
         }

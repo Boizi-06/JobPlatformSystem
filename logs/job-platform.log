@@ -50,3 +50,1063 @@
 2026-06-13T15:11:36.980+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : UserServiceImpl.register executed in 1574 ms
 2026-06-13T15:11:36.987+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : AuthController.register executed in 1585 ms
 2026-06-13T15:11:37.063+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:12:05.911+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/register
+2026-06-13T15:12:05.911+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/register
+2026-06-13T15:12:05.931+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : UserServiceImpl.register failed after 11 ms
+2026-06-13T15:12:05.931+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : AuthController.register failed after 11 ms
+2026-06-13T15:12:05.955+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.jobplatformsystem.exception.DuplicateResourceException: Email already exists]
+2026-06-13T15:12:05.956+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:12:32.972+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/register
+2026-06-13T15:12:32.972+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/register
+2026-06-13T15:12:33.006+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.example.jobplatformsystem.dto.response.UserResponse com.example.jobplatformsystem.controller.AuthController.register(com.example.jobplatformsystem.dto.request.RegisterRequest): [Field error in object 'registerRequest' on field 'email': rejected value [abc]; codes [Email.registerRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@59cd2999,.*]; default message [Invalid email]] ]
+2026-06-13T15:12:33.006+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:14:50.326+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T15:14:50.326+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T15:14:50.867+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 30 ms
+2026-06-13T15:14:50.872+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 532 ms
+2026-06-13T15:14:50.872+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 532 ms
+2026-06-13T15:14:50.872+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:19:23.954+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T15:19:23.954+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T15:19:23.976+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login failed after 4 ms
+2026-06-13T15:19:23.976+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : AuthController.login failed after 4 ms
+2026-06-13T15:19:23.984+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.jobplatformsystem.exception.ResourceNotFoundException: Email not found]
+2026-06-13T15:19:23.986+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:19:47.604+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T15:19:47.610+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T15:19:47.738+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login failed after 126 ms
+2026-06-13T15:19:47.740+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : AuthController.login failed after 126 ms
+2026-06-13T15:19:47.743+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.RuntimeException: Invalid password]
+2026-06-13T15:19:47.743+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:20:20.603+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T15:20:20.603+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T15:20:20.613+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.example.jobplatformsystem.dto.response.AuthResponse com.example.jobplatformsystem.controller.AuthController.login(com.example.jobplatformsystem.dto.request.LoginRequest): [Field error in object 'loginRequest' on field 'email': rejected value [candidaim]; codes [Email.loginRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@59cd2999,.*]; default message [Invalid email]] ]
+2026-06-13T15:20:20.614+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:24:58.954+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/refresh-token
+2026-06-13T15:24:58.955+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/refresh-token
+2026-06-13T15:24:58.990+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.verifyRefreshToken failed after 27 ms
+2026-06-13T15:24:58.994+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : AuthController.refreshToken failed after 31 ms
+2026-06-13T15:24:58.998+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.jobplatformsystem.exception.ResourceNotFoundException: Refresh token not found]
+2026-06-13T15:24:59.001+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:25:19.065+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T15:25:19.066+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T15:25:19.226+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 23 ms
+2026-06-13T15:25:19.226+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 149 ms
+2026-06-13T15:25:19.226+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 149 ms
+2026-06-13T15:25:19.226+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:25:35.140+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/refresh-token
+2026-06-13T15:25:35.144+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/refresh-token
+2026-06-13T15:25:35.172+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.verifyRefreshToken executed in 24 ms
+2026-06-13T15:25:35.178+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : AuthController.refreshToken executed in 32 ms
+2026-06-13T15:25:35.183+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:32:31.191+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/logout
+2026-06-13T15:32:31.195+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:32:31.370+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/api/v1/auth/logout?continue to session
+2026-06-13T15:32:31.374+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T15:32:31.402+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T15:32:31.410+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:32:31.411+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T15:32:31.411+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T15:32:45.256+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T15:32:45.256+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T15:32:45.471+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 21 ms
+2026-06-13T15:32:45.471+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 211 ms
+2026-06-13T15:32:45.471+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 211 ms
+2026-06-13T15:32:45.474+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:33:16.742+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/logout
+2026-06-13T15:33:16.743+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:33:16.749+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/api/v1/auth/logout?continue to session
+2026-06-13T15:33:16.749+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T15:33:16.751+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T15:33:16.753+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:33:16.754+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T15:33:16.754+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T15:33:31.419+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/logout
+2026-06-13T15:33:31.420+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:33:31.421+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/api/v1/auth/logout?continue to session
+2026-06-13T15:33:31.421+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T15:33:31.421+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T15:33:31.421+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:33:31.421+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T15:33:31.421+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T15:34:52.479+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/logout
+2026-06-13T15:34:52.761+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/logout
+2026-06-13T15:34:52.846+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.revokeRefreshToken executed in 76 ms
+2026-06-13T15:34:52.846+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : AuthController.logout executed in 76 ms
+2026-06-13T15:35:16.474+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/logout
+2026-06-13T15:35:16.483+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/logout
+2026-06-13T15:35:16.489+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.revokeRefreshToken failed after 3 ms
+2026-06-13T15:35:16.490+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : AuthController.logout failed after 4 ms
+2026-06-13T15:35:16.496+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.jobplatformsystem.exception.ResourceNotFoundException: Refresh token not found]
+2026-06-13T15:35:36.257+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/logout
+2026-06-13T15:35:36.266+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/logout
+2026-06-13T15:35:36.272+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.revokeRefreshToken failed after 5 ms
+2026-06-13T15:35:36.272+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : AuthController.logout failed after 5 ms
+2026-06-13T15:35:36.274+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.jobplatformsystem.exception.ResourceNotFoundException: Refresh token not found]
+2026-06-13T15:41:41.065+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T15:41:41.068+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T15:41:41.246+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login failed after 123 ms
+2026-06-13T15:41:41.246+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : AuthController.login failed after 123 ms
+2026-06-13T15:41:41.258+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.RuntimeException: Invalid password]
+2026-06-13T15:41:41.258+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:41:50.276+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T15:41:50.276+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T15:41:50.433+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login failed after 157 ms
+2026-06-13T15:41:50.434+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : AuthController.login failed after 158 ms
+2026-06-13T15:41:50.438+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.RuntimeException: Invalid password]
+2026-06-13T15:41:50.439+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:42:10.414+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/register
+2026-06-13T15:42:10.414+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/register
+2026-06-13T15:42:10.449+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.example.jobplatformsystem.dto.response.UserResponse com.example.jobplatformsystem.controller.AuthController.register(com.example.jobplatformsystem.dto.request.RegisterRequest): [Field error in object 'registerRequest' on field 'email': rejected value [abc]; codes [Email.registerRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@59cd2999,.*]; default message [Invalid email]] ]
+2026-06-13T15:42:10.449+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:43:40.368+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T15:43:40.369+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T15:43:40.518+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 25 ms
+2026-06-13T15:43:40.518+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 147 ms
+2026-06-13T15:43:40.518+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 147 ms
+2026-06-13T15:43:40.520+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:44:29.111+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T15:44:29.117+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T15:44:29.247+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 7 ms
+2026-06-13T15:44:29.247+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 125 ms
+2026-06-13T15:44:29.247+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 125 ms
+2026-06-13T15:44:29.254+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:45:28.933+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/v1/users
+2026-06-13T15:45:28.945+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/v1/users
+2026-06-13T15:45:29.085+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : UserServiceImpl.getAllUsers executed in 133 ms
+2026-06-13T15:45:29.085+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : UserController.getAllUsers executed in 133 ms
+2026-06-13T15:45:57.208+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /api/v1/users
+2026-06-13T15:45:57.213+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+io.jsonwebtoken.security.SignatureException: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+	at io.jsonwebtoken.impl.DefaultJwtParser.verifySignature(DefaultJwtParser.java:340) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:576) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:364) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:94) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:36) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:29) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseSignedClaims(DefaultJwtParser.java:827) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at com.example.jobplatformsystem.security.JwtService.extractAllClaims(JwtService.java:67) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtService.extractClaim(JwtService.java:58) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtService.extractUsername(JwtService.java:49) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:47) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-06-13T15:45:57.245+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T15:45:57.245+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:45:57.261+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T15:45:57.261+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T15:46:24.914+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/v1/users
+2026-06-13T15:46:24.915+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+io.jsonwebtoken.security.SignatureException: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+	at io.jsonwebtoken.impl.DefaultJwtParser.verifySignature(DefaultJwtParser.java:340) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:576) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:364) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:94) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:36) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:29) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseSignedClaims(DefaultJwtParser.java:827) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at com.example.jobplatformsystem.security.JwtService.extractAllClaims(JwtService.java:67) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtService.extractClaim(JwtService.java:58) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtService.extractUsername(JwtService.java:49) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:47) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-06-13T15:46:24.915+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T15:46:24.915+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:46:24.915+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T15:46:24.915+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T15:46:47.992+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/v1/users/search?keyword=candidate
+2026-06-13T15:46:48.031+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/v1/users/search?keyword=candidate
+2026-06-13T15:46:48.186+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : UserServiceImpl.searchUsers executed in 118 ms
+2026-06-13T15:46:48.186+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : UserController.searchUsers executed in 118 ms
+2026-06-13T15:47:56.234+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/v1/users/page?page=0&size=2
+2026-06-13T15:47:56.243+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/v1/users/page?page=0&size=2
+2026-06-13T15:47:56.299+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : UserServiceImpl.getUsers executed in 50 ms
+2026-06-13T15:47:56.299+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : UserController.getUsers executed in 50 ms
+2026-06-13T15:47:56.318+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2026-06-13T15:49:00.057+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Securing DELETE /api/v1/users/3
+2026-06-13T15:49:00.065+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Secured DELETE /api/v1/users/3
+2026-06-13T15:49:01.199+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 1451, SQLState: 23000
+2026-06-13T15:49:01.199+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] org.hibernate.orm.jdbc.error             : Cannot delete or update a parent row: a foreign key constraint fails (`job_platform_system`.`jobs`, CONSTRAINT `FKl3otvetpyn3n8b83eqtrp5l7i` FOREIGN KEY (`employer_id`) REFERENCES `users` (`id`))
+2026-06-13T15:49:01.249+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : UserServiceImpl.deleteUser failed after 1178 ms
+2026-06-13T15:49:01.250+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : UserController.deleteUser failed after 1180 ms
+2026-06-13T15:49:01.261+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Cannot delete or update a parent row: a foreign key constraint fails (`job_platform_system`.`jobs`, CONSTRAINT `FKl3otvetpyn3n8b83eqtrp5l7i` FOREIGN KEY (`employer_id`) REFERENCES `users` (`id`))] [delete from users where id=?]; SQL [delete from users where id=?]; constraint [FKl3otvetpyn3n8b83eqtrp5l7i]]
+2026-06-13T15:50:02.290+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing DELETE /api/v1/users/3
+2026-06-13T15:50:02.300+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Secured DELETE /api/v1/users/3
+2026-06-13T15:50:02.319+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 1451, SQLState: 23000
+2026-06-13T15:50:02.320+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] org.hibernate.orm.jdbc.error             : Cannot delete or update a parent row: a foreign key constraint fails (`job_platform_system`.`jobs`, CONSTRAINT `FKl3otvetpyn3n8b83eqtrp5l7i` FOREIGN KEY (`employer_id`) REFERENCES `users` (`id`))
+2026-06-13T15:50:02.323+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : UserServiceImpl.deleteUser failed after 23 ms
+2026-06-13T15:50:02.323+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : UserController.deleteUser failed after 23 ms
+2026-06-13T15:50:02.328+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Cannot delete or update a parent row: a foreign key constraint fails (`job_platform_system`.`jobs`, CONSTRAINT `FKl3otvetpyn3n8b83eqtrp5l7i` FOREIGN KEY (`employer_id`) REFERENCES `users` (`id`))] [delete from users where id=?]; SQL [delete from users where id=?]; constraint [FKl3otvetpyn3n8b83eqtrp5l7i]]
+2026-06-13T15:50:03.600+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing DELETE /api/v1/users/3
+2026-06-13T15:50:03.607+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Secured DELETE /api/v1/users/3
+2026-06-13T15:50:03.625+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 1451, SQLState: 23000
+2026-06-13T15:50:03.625+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] org.hibernate.orm.jdbc.error             : Cannot delete or update a parent row: a foreign key constraint fails (`job_platform_system`.`jobs`, CONSTRAINT `FKl3otvetpyn3n8b83eqtrp5l7i` FOREIGN KEY (`employer_id`) REFERENCES `users` (`id`))
+2026-06-13T15:50:03.628+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : UserServiceImpl.deleteUser failed after 21 ms
+2026-06-13T15:50:03.628+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : UserController.deleteUser failed after 21 ms
+2026-06-13T15:50:03.628+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Cannot delete or update a parent row: a foreign key constraint fails (`job_platform_system`.`jobs`, CONSTRAINT `FKl3otvetpyn3n8b83eqtrp5l7i` FOREIGN KEY (`employer_id`) REFERENCES `users` (`id`))] [delete from users where id=?]; SQL [delete from users where id=?]; constraint [FKl3otvetpyn3n8b83eqtrp5l7i]]
+2026-06-13T15:50:04.399+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing DELETE /api/v1/users/3
+2026-06-13T15:50:04.407+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Secured DELETE /api/v1/users/3
+2026-06-13T15:50:04.415+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 1451, SQLState: 23000
+2026-06-13T15:50:04.416+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] org.hibernate.orm.jdbc.error             : Cannot delete or update a parent row: a foreign key constraint fails (`job_platform_system`.`jobs`, CONSTRAINT `FKl3otvetpyn3n8b83eqtrp5l7i` FOREIGN KEY (`employer_id`) REFERENCES `users` (`id`))
+2026-06-13T15:50:04.424+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : UserServiceImpl.deleteUser failed after 15 ms
+2026-06-13T15:50:04.425+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : UserController.deleteUser failed after 17 ms
+2026-06-13T15:50:04.427+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Cannot delete or update a parent row: a foreign key constraint fails (`job_platform_system`.`jobs`, CONSTRAINT `FKl3otvetpyn3n8b83eqtrp5l7i` FOREIGN KEY (`employer_id`) REFERENCES `users` (`id`))] [delete from users where id=?]; SQL [delete from users where id=?]; constraint [FKl3otvetpyn3n8b83eqtrp5l7i]]
+2026-06-13T15:50:05.137+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing DELETE /api/v1/users/3
+2026-06-13T15:50:05.149+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Secured DELETE /api/v1/users/3
+2026-06-13T15:50:05.165+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 1451, SQLState: 23000
+2026-06-13T15:50:05.165+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] org.hibernate.orm.jdbc.error             : Cannot delete or update a parent row: a foreign key constraint fails (`job_platform_system`.`jobs`, CONSTRAINT `FKl3otvetpyn3n8b83eqtrp5l7i` FOREIGN KEY (`employer_id`) REFERENCES `users` (`id`))
+2026-06-13T15:50:05.168+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : UserServiceImpl.deleteUser failed after 18 ms
+2026-06-13T15:50:05.168+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : UserController.deleteUser failed after 18 ms
+2026-06-13T15:50:05.168+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Cannot delete or update a parent row: a foreign key constraint fails (`job_platform_system`.`jobs`, CONSTRAINT `FKl3otvetpyn3n8b83eqtrp5l7i` FOREIGN KEY (`employer_id`) REFERENCES `users` (`id`))] [delete from users where id=?]; SQL [delete from users where id=?]; constraint [FKl3otvetpyn3n8b83eqtrp5l7i]]
+2026-06-13T15:50:11.377+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Securing DELETE /api/v1/users/4
+2026-06-13T15:50:11.386+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Secured DELETE /api/v1/users/4
+2026-06-13T15:50:11.411+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : UserServiceImpl.deleteUser executed in 25 ms
+2026-06-13T15:50:11.411+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : UserController.deleteUser executed in 25 ms
+2026-06-13T15:50:24.972+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Securing DELETE /api/v1/users/99
+2026-06-13T15:50:24.980+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Secured DELETE /api/v1/users/99
+2026-06-13T15:50:24.987+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : UserServiceImpl.deleteUser failed after 6 ms
+2026-06-13T15:50:24.987+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : UserController.deleteUser failed after 6 ms
+2026-06-13T15:50:24.989+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.jobplatformsystem.exception.ResourceNotFoundException: User not found with id: 99]
+2026-06-13T15:51:43.915+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing PUT /api/v1/jobs/1/approve
+2026-06-13T15:51:43.928+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Secured PUT /api/v1/jobs/1/approve
+2026-06-13T15:51:44.031+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : JobServiceImpl.approveJob executed in 94 ms
+2026-06-13T15:51:44.031+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : JobController.approveJob executed in 95 ms
+2026-06-13T15:52:20.447+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Securing PUT /api/v1/jobs/1/reject
+2026-06-13T15:52:20.457+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Secured PUT /api/v1/jobs/1/reject
+2026-06-13T15:52:20.476+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : JobServiceImpl.rejectJob executed in 17 ms
+2026-06-13T15:52:20.476+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : JobController.rejectJob executed in 17 ms
+2026-06-13T15:52:52.740+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T15:52:52.749+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T15:52:52.948+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 21 ms
+2026-06-13T15:52:52.948+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 184 ms
+2026-06-13T15:52:52.948+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 185 ms
+2026-06-13T15:53:20.555+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing PUT /api/v1/jobs/1/reject
+2026-06-13T15:53:20.560+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Secured PUT /api/v1/jobs/1/reject
+2026-06-13T15:53:20.572+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : JobServiceImpl.rejectJob executed in 10 ms
+2026-06-13T15:53:20.572+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : JobController.rejectJob executed in 10 ms
+2026-06-13T15:53:40.503+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing PUT /api/v1/jobs/1/reject
+2026-06-13T15:53:40.504+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+io.jsonwebtoken.security.SignatureException: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+	at io.jsonwebtoken.impl.DefaultJwtParser.verifySignature(DefaultJwtParser.java:340) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:576) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:364) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:94) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:36) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:29) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseSignedClaims(DefaultJwtParser.java:827) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at com.example.jobplatformsystem.security.JwtService.extractAllClaims(JwtService.java:67) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtService.extractClaim(JwtService.java:58) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtService.extractUsername(JwtService.java:49) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:47) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-06-13T15:53:40.507+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T15:53:40.507+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:53:40.508+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T15:53:40.508+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T15:57:55.509+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/register
+2026-06-13T15:57:55.510+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/register
+2026-06-13T15:57:55.718+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : UserServiceImpl.register executed in 197 ms
+2026-06-13T15:57:55.720+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : AuthController.register executed in 199 ms
+2026-06-13T15:57:55.724+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:58:18.336+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T15:58:18.336+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T15:58:18.604+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 122 ms
+2026-06-13T15:58:18.604+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 259 ms
+2026-06-13T15:58:18.604+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 259 ms
+2026-06-13T15:58:18.604+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T15:59:29.381+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/jobs
+2026-06-13T15:59:29.387+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/jobs
+2026-06-13T15:59:29.491+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : JobServiceImpl.createJob executed in 13 ms
+2026-06-13T15:59:29.491+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : JobController.createJob executed in 13 ms
+2026-06-13T16:00:18.678+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/jobs
+2026-06-13T16:00:18.679+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+io.jsonwebtoken.security.SignatureException: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+	at io.jsonwebtoken.impl.DefaultJwtParser.verifySignature(DefaultJwtParser.java:340) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:576) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:364) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:94) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:36) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:29) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseSignedClaims(DefaultJwtParser.java:827) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at com.example.jobplatformsystem.security.JwtService.extractAllClaims(JwtService.java:67) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtService.extractClaim(JwtService.java:58) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtService.extractUsername(JwtService.java:49) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:47) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-06-13T16:00:18.683+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T16:00:18.683+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:00:18.683+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T16:00:18.683+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:00:50.364+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/jobs
+2026-06-13T16:00:50.373+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/jobs
+2026-06-13T16:00:50.387+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : JobServiceImpl.createJob failed after 9 ms
+2026-06-13T16:00:50.387+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : JobController.createJob failed after 9 ms
+2026-06-13T16:00:50.394+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.jobplatformsystem.exception.ResourceNotFoundException: Employer not found]
+2026-06-13T16:01:17.039+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/jobs
+2026-06-13T16:01:17.046+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/jobs
+2026-06-13T16:01:17.054+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Invalid numeric value: Leading zeroes not allowed]
+2026-06-13T16:01:39.159+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/jobs
+2026-06-13T16:01:39.168+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/jobs
+2026-06-13T16:01:39.179+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.example.jobplatformsystem.dto.response.JobResponse com.example.jobplatformsystem.controller.JobController.createJob(com.example.jobplatformsystem.dto.request.CreateJobRequest): [Field error in object 'createJobRequest' on field 'title': rejected value []; codes [NotBlank.createJobRequest.title,NotBlank.title,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createJobRequest.title,title]; arguments []; default message [title]]; default message [Title is required]] ]
+2026-06-13T16:01:59.100+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/jobs
+2026-06-13T16:01:59.107+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/jobs
+2026-06-13T16:01:59.115+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.example.jobplatformsystem.dto.response.JobResponse com.example.jobplatformsystem.controller.JobController.createJob(com.example.jobplatformsystem.dto.request.CreateJobRequest): [Field error in object 'createJobRequest' on field 'deadline': rejected value [null]; codes [NotNull.createJobRequest.deadline,NotNull.deadline,NotNull.java.time.LocalDate,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createJobRequest.deadline,deadline]; arguments []; default message [deadline]]; default message [Deadline is required]] ]
+2026-06-13T16:04:55.690+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/register
+2026-06-13T16:04:55.690+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/register
+2026-06-13T16:04:55.697+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : UserServiceImpl.register failed after 7 ms
+2026-06-13T16:04:55.697+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : AuthController.register failed after 7 ms
+2026-06-13T16:04:55.697+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.jobplatformsystem.exception.DuplicateResourceException: Username already exists]
+2026-06-13T16:04:55.697+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:05:04.793+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/register
+2026-06-13T16:05:04.793+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/register
+2026-06-13T16:05:05.000+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : UserServiceImpl.register executed in 205 ms
+2026-06-13T16:05:05.000+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : AuthController.register executed in 205 ms
+2026-06-13T16:05:05.004+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:05:22.905+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:05:22.905+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:05:23.119+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 13 ms
+2026-06-13T16:05:23.120+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 208 ms
+2026-06-13T16:05:23.120+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 208 ms
+2026-06-13T16:05:23.121+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:06:06.360+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/v1/jobs/search?keyword=java
+2026-06-13T16:06:06.367+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/v1/jobs/search?keyword=java
+2026-06-13T16:06:06.459+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : JobServiceImpl.searchJobs executed in 68 ms
+2026-06-13T16:06:06.459+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : JobController.searchJobs executed in 68 ms
+2026-06-13T16:06:28.943+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/v1/jobs/search?keyword=abcxyz
+2026-06-13T16:06:28.951+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/v1/jobs/search?keyword=abcxyz
+2026-06-13T16:06:28.959+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : JobServiceImpl.searchJobs executed in 7 ms
+2026-06-13T16:06:28.960+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : JobController.searchJobs executed in 8 ms
+2026-06-13T16:07:24.939+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/apply
+2026-06-13T16:07:24.949+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/apply
+2026-06-13T16:07:24.977+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.example.jobplatformsystem.dto.response.ApplicationResponse com.example.jobplatformsystem.controller.ApplicationController.applyJob(com.example.jobplatformsystem.dto.request.ApplyJobRequest)]
+2026-06-13T16:07:39.217+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/apply
+2026-06-13T16:07:39.233+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/apply
+2026-06-13T16:07:39.258+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : ApplicationServiceImpl.applyJob failed after 5 ms
+2026-06-13T16:07:39.258+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : ApplicationController.applyJob failed after 5 ms
+2026-06-13T16:07:39.258+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.jobplatformsystem.exception.ResourceNotFoundException: Candidate not found]
+2026-06-13T16:07:47.511+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/apply
+2026-06-13T16:07:47.520+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/apply
+2026-06-13T16:07:47.579+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : ApplicationServiceImpl.applyJob executed in 59 ms
+2026-06-13T16:07:47.579+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : ApplicationController.applyJob executed in 59 ms
+2026-06-13T16:08:19.244+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:08:19.246+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:08:19.379+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 9 ms
+2026-06-13T16:08:19.379+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 130 ms
+2026-06-13T16:08:19.379+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 130 ms
+2026-06-13T16:08:19.380+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:09:30.401+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/apply
+2026-06-13T16:09:30.416+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.access.AccessDeniedHandlerImpl   : Responding with 403 status code
+2026-06-13T16:09:30.416+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T16:09:30.416+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:09:30.416+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T16:09:30.416+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:09:49.517+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/apply
+2026-06-13T16:09:49.523+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.access.AccessDeniedHandlerImpl   : Responding with 403 status code
+2026-06-13T16:09:49.523+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T16:09:49.523+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:09:49.524+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T16:09:49.524+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:09:59.499+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:09:59.500+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:09:59.687+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 14 ms
+2026-06-13T16:09:59.687+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 187 ms
+2026-06-13T16:09:59.687+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 187 ms
+2026-06-13T16:09:59.687+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:10:22.907+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/apply
+2026-06-13T16:10:22.913+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/apply
+2026-06-13T16:10:22.928+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : ApplicationServiceImpl.applyJob failed after 15 ms
+2026-06-13T16:10:22.928+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : ApplicationController.applyJob failed after 15 ms
+2026-06-13T16:10:22.929+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.jobplatformsystem.exception.ResourceNotFoundException: Candidate not found]
+2026-06-13T16:10:48.405+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/apply
+2026-06-13T16:10:48.412+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/apply
+2026-06-13T16:10:48.423+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : ApplicationServiceImpl.applyJob failed after 11 ms
+2026-06-13T16:10:48.423+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : ApplicationController.applyJob failed after 11 ms
+2026-06-13T16:10:48.425+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.jobplatformsystem.exception.ResourceNotFoundException: Job not found]
+2026-06-13T16:11:06.031+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/apply
+2026-06-13T16:11:06.038+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/apply
+2026-06-13T16:11:06.120+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.example.jobplatformsystem.dto.response.ApplicationResponse com.example.jobplatformsystem.controller.ApplicationController.applyJob(com.example.jobplatformsystem.dto.request.ApplyJobRequest): [Field error in object 'applyJobRequest' on field 'candidateId': rejected value [null]; codes [NotNull.applyJobRequest.candidateId,NotNull.candidateId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [applyJobRequest.candidateId,candidateId]; arguments []; default message [candidateId]]; default message [must not be null]] ]
+2026-06-13T16:12:58.281+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:12:58.281+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:12:58.428+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 13 ms
+2026-06-13T16:12:58.428+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 145 ms
+2026-06-13T16:12:58.428+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 145 ms
+2026-06-13T16:12:58.439+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:14:18.508+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/v1/applications/job/1
+2026-06-13T16:14:18.516+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+io.jsonwebtoken.MalformedJwtException: JWE header does not contain a required 'enc' (Encryption Algorithm) header parameter.  This header parameter is mandatory per the JWE Specification, Section 4.1.2. See https://www.rfc-editor.org/rfc/rfc7516.html#section-4.1.2 for more information.
+	at io.jsonwebtoken.impl.IdLocator.locate(IdLocator.java:53) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.IdLocator.apply(IdLocator.java:81) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.IdLocator.apply(IdLocator.java:29) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:498) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:364) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:94) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:36) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:29) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseSignedClaims(DefaultJwtParser.java:827) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at com.example.jobplatformsystem.security.JwtService.extractAllClaims(JwtService.java:67) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtService.extractClaim(JwtService.java:58) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtService.extractUsername(JwtService.java:49) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:47) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-06-13T16:14:18.522+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T16:14:18.522+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:14:18.522+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T16:14:18.522+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:14:21.460+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/v1/applications/job/1
+2026-06-13T16:14:21.471+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/v1/applications/job/1
+2026-06-13T16:14:21.539+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : ApplicationServiceImpl.getApplicationsByJob executed in 61 ms
+2026-06-13T16:14:21.539+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : ApplicationController.getApplicationsByJob executed in 61 ms
+2026-06-13T16:15:22.902+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/1/status
+2026-06-13T16:15:22.910+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/1/status
+2026-06-13T16:15:22.929+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2026-06-13T16:15:38.468+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/1/status
+2026-06-13T16:15:38.470+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/1/status
+2026-06-13T16:15:38.476+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2026-06-13T16:15:42.648+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/1/status
+2026-06-13T16:15:42.655+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/1/status
+2026-06-13T16:15:42.661+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2026-06-13T16:15:43.350+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/1/status
+2026-06-13T16:15:43.358+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/1/status
+2026-06-13T16:15:43.363+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2026-06-13T16:15:44.043+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/1/status
+2026-06-13T16:15:44.055+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/1/status
+2026-06-13T16:15:44.055+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2026-06-13T16:15:44.698+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/1/status
+2026-06-13T16:15:44.706+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/1/status
+2026-06-13T16:15:44.706+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2026-06-13T16:15:45.295+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/1/status
+2026-06-13T16:15:45.307+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/1/status
+2026-06-13T16:15:45.308+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2026-06-13T16:15:46.016+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/1/status
+2026-06-13T16:15:46.023+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/1/status
+2026-06-13T16:15:46.023+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2026-06-13T16:15:46.666+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/1/status
+2026-06-13T16:15:46.675+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/1/status
+2026-06-13T16:15:46.680+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2026-06-13T16:15:47.568+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/1/status
+2026-06-13T16:15:47.576+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/1/status
+2026-06-13T16:15:47.579+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2026-06-13T16:16:35.366+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Securing PUT /api/v1/applications/1/status
+2026-06-13T16:16:35.373+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Secured PUT /api/v1/applications/1/status
+2026-06-13T16:16:35.395+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : ApplicationServiceImpl.updateStatus executed in 12 ms
+2026-06-13T16:16:35.395+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : ApplicationController.updateStatus executed in 12 ms
+2026-06-13T16:18:07.471+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Securing PUT /api/v1/applications/1/status
+2026-06-13T16:18:07.476+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Secured PUT /api/v1/applications/1/status
+2026-06-13T16:18:07.489+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : ApplicationServiceImpl.updateStatus executed in 7 ms
+2026-06-13T16:18:07.489+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : ApplicationController.updateStatus executed in 7 ms
+2026-06-13T16:18:19.738+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing PUT /api/v1/applications/1/status
+2026-06-13T16:18:19.748+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Secured PUT /api/v1/applications/1/status
+2026-06-13T16:18:19.790+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : ApplicationServiceImpl.updateStatus executed in 41 ms
+2026-06-13T16:18:19.790+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : ApplicationController.updateStatus executed in 41 ms
+2026-06-13T16:18:35.376+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Securing PUT /api/v1/applications/1/status
+2026-06-13T16:18:35.383+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Secured PUT /api/v1/applications/1/status
+2026-06-13T16:18:35.406+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : ApplicationServiceImpl.updateStatus executed in 21 ms
+2026-06-13T16:18:35.406+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : ApplicationController.updateStatus executed in 21 ms
+2026-06-13T16:18:49.582+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing PUT /api/v1/applications/1/status
+2026-06-13T16:18:49.590+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Secured PUT /api/v1/applications/1/status
+2026-06-13T16:18:49.614+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : ApplicationServiceImpl.updateStatus executed in 24 ms
+2026-06-13T16:18:49.614+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : ApplicationController.updateStatus executed in 24 ms
+2026-06-13T16:19:29.080+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing PUT /api/v1/applications/1/status
+2026-06-13T16:19:29.093+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Secured PUT /api/v1/applications/1/status
+2026-06-13T16:19:29.115+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : ApplicationServiceImpl.updateStatus executed in 17 ms
+2026-06-13T16:19:29.115+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : ApplicationController.updateStatus executed in 17 ms
+2026-06-13T16:19:48.828+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing PUT /api/v1/applications/1/status
+2026-06-13T16:19:48.828+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+io.jsonwebtoken.security.SignatureException: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+	at io.jsonwebtoken.impl.DefaultJwtParser.verifySignature(DefaultJwtParser.java:340) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:576) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:364) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:94) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:36) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:29) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseSignedClaims(DefaultJwtParser.java:827) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at com.example.jobplatformsystem.security.JwtService.extractAllClaims(JwtService.java:67) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtService.extractClaim(JwtService.java:58) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtService.extractUsername(JwtService.java:49) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:47) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-06-13T16:19:48.833+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T16:19:48.833+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:19:48.834+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T16:19:48.834+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:20:15.684+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Securing PUT /api/v1/applications/999/status
+2026-06-13T16:20:15.694+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Secured PUT /api/v1/applications/999/status
+2026-06-13T16:20:15.706+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : ApplicationServiceImpl.updateStatus failed after 7 ms
+2026-06-13T16:20:15.706+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : ApplicationController.updateStatus failed after 7 ms
+2026-06-13T16:20:15.708+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.jobplatformsystem.exception.ResourceNotFoundException: Application not found]
+2026-06-13T16:23:44.523+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/files/upload-cv/6
+2026-06-13T16:23:44.530+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.access.AccessDeniedHandlerImpl   : Responding with 403 status code
+2026-06-13T16:23:44.530+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T16:23:44.530+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:23:44.626+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T16:23:44.626+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:23:56.854+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/files/upload-cv/6
+2026-06-13T16:23:56.861+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.access.AccessDeniedHandlerImpl   : Responding with 403 status code
+2026-06-13T16:23:56.863+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T16:23:56.863+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:23:56.907+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T16:23:56.907+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:23:58.646+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/files/upload-cv/6
+2026-06-13T16:23:58.652+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.s.w.access.AccessDeniedHandlerImpl   : Responding with 403 status code
+2026-06-13T16:23:58.653+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T16:23:58.653+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:23:58.693+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T16:23:58.694+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:24:00.726+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/files/upload-cv/6
+2026-06-13T16:24:00.732+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.access.AccessDeniedHandlerImpl   : Responding with 403 status code
+2026-06-13T16:24:00.732+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T16:24:00.732+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:24:00.764+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T16:24:00.764+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:24:20.014+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:24:20.014+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:24:20.155+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 15 ms
+2026-06-13T16:24:20.156+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 128 ms
+2026-06-13T16:24:20.156+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 128 ms
+2026-06-13T16:24:20.157+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:24:46.785+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/files/upload-cv/6
+2026-06-13T16:24:46.801+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/files/upload-cv/6
+2026-06-13T16:24:46.994+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : FileStorageServiceImpl.uploadCv executed in 123 ms
+2026-06-13T16:24:46.994+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : FileController.uploadCv executed in 123 ms
+2026-06-13T16:25:17.382+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/files/upload-cv/999
+2026-06-13T16:25:17.388+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/files/upload-cv/999
+2026-06-13T16:25:17.394+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.multipart.MultipartException: Current request is not a multipart request]
+2026-06-13T16:25:43.847+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/files/upload-cv/999
+2026-06-13T16:25:43.847+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+io.jsonwebtoken.security.SignatureException: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+	at io.jsonwebtoken.impl.DefaultJwtParser.verifySignature(DefaultJwtParser.java:340) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:576) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:364) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:94) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:36) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:29) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseSignedClaims(DefaultJwtParser.java:827) ~[jjwt-impl-0.12.7.jar:0.12.7]
+	at com.example.jobplatformsystem.security.JwtService.extractAllClaims(JwtService.java:67) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtService.extractClaim(JwtService.java:58) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtService.extractUsername(JwtService.java:49) ~[main/:na]
+	at com.example.jobplatformsystem.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:47) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-06-13T16:25:43.853+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T16:25:43.853+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:25:43.853+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T16:25:43.853+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:26:15.895+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/files/upload-cv/999
+2026-06-13T16:26:15.903+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/files/upload-cv/999
+2026-06-13T16:26:15.903+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.multipart.MultipartException: Current request is not a multipart request]
+2026-06-13T16:30:22.661+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/change-password
+2026-06-13T16:30:22.676+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/change-password
+2026-06-13T16:30:23.124+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : UserServiceImpl.changePassword executed in 368 ms
+2026-06-13T16:30:23.124+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : AuthController.changePassword executed in 376 ms
+2026-06-13T16:30:36.241+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/change-password
+2026-06-13T16:30:36.244+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/change-password
+2026-06-13T16:30:36.372+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : UserServiceImpl.changePassword failed after 123 ms
+2026-06-13T16:30:36.372+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : AuthController.changePassword failed after 124 ms
+2026-06-13T16:30:36.379+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.RuntimeException: Old password is incorrect]
+2026-06-13T16:30:52.832+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/change-password
+2026-06-13T16:30:52.832+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:30:52.832+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/api/v1/auth/change-password?continue to session
+2026-06-13T16:30:52.832+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:30:52.832+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T16:30:52.839+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:30:52.840+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T16:30:52.840+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:31:01.416+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/change-password
+2026-06-13T16:31:01.419+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:31:01.419+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/api/v1/auth/change-password?continue to session
+2026-06-13T16:31:01.419+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:31:01.420+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T16:31:01.420+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:31:01.421+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T16:31:01.421+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:31:34.497+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/change-password
+2026-06-13T16:31:34.506+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/change-password
+2026-06-13T16:31:34.789+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : UserServiceImpl.changePassword executed in 282 ms
+2026-06-13T16:31:34.789+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : AuthController.changePassword executed in 282 ms
+2026-06-13T16:31:50.899+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:31:50.900+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:31:51.046+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login failed after 125 ms
+2026-06-13T16:31:51.046+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : AuthController.login failed after 125 ms
+2026-06-13T16:31:51.046+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.RuntimeException: Invalid password]
+2026-06-13T16:31:51.049+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:32:07.437+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:32:07.437+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:32:07.590+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 27 ms
+2026-06-13T16:32:07.591+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 153 ms
+2026-06-13T16:32:07.591+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 153 ms
+2026-06-13T16:32:07.593+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:32:55.299+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/forgot-password
+2026-06-13T16:32:55.313+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/forgot-password
+2026-06-13T16:32:55.460+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : UserServiceImpl.forgotPassword executed in 140 ms
+2026-06-13T16:32:55.461+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : AuthController.forgotPassword executed in 141 ms
+2026-06-13T16:33:19.747+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/forgot-password
+2026-06-13T16:33:19.751+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/forgot-password
+2026-06-13T16:33:19.756+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : UserServiceImpl.forgotPassword failed after 5 ms
+2026-06-13T16:33:19.757+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] c.e.j.aspect.LoggingAspect               : AuthController.forgotPassword failed after 6 ms
+2026-06-13T16:33:19.759+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.RuntimeException: Email not found]
+2026-06-13T16:33:44.537+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/forgot-password
+2026-06-13T16:33:44.544+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/forgot-password
+2026-06-13T16:33:44.686+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : UserServiceImpl.forgotPassword executed in 141 ms
+2026-06-13T16:33:44.687+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : AuthController.forgotPassword executed in 142 ms
+2026-06-13T16:33:50.682+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:33:50.682+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:33:50.817+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login failed after 133 ms
+2026-06-13T16:33:50.817+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] c.e.j.aspect.LoggingAspect               : AuthController.login failed after 133 ms
+2026-06-13T16:33:50.822+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.RuntimeException: Invalid password]
+2026-06-13T16:33:50.822+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:34:13.318+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:34:13.319+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:34:13.464+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login failed after 144 ms
+2026-06-13T16:34:13.464+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : AuthController.login failed after 144 ms
+2026-06-13T16:34:13.464+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.RuntimeException: Invalid password]
+2026-06-13T16:34:13.464+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:34:41.793+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:34:41.793+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:34:41.988+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 14 ms
+2026-06-13T16:34:41.988+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 195 ms
+2026-06-13T16:34:41.988+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 195 ms
+2026-06-13T16:34:41.988+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:42:01.588+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/register
+2026-06-13T16:42:01.588+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/register
+2026-06-13T16:42:01.779+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : UserServiceImpl.register executed in 181 ms
+2026-06-13T16:42:01.779+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : AuthController.register executed in 181 ms
+2026-06-13T16:42:01.780+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:42:46.920+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:42:46.920+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:42:47.095+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 21 ms
+2026-06-13T16:42:47.095+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 171 ms
+2026-06-13T16:42:47.095+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 171 ms
+2026-06-13T16:42:47.096+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:44:35.193+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/jobs
+2026-06-13T16:44:35.201+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.access.AccessDeniedHandlerImpl   : Responding with 403 status code
+2026-06-13T16:44:35.201+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T16:44:35.201+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:44:35.201+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T16:44:35.201+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:44:54.978+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:44:54.978+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:44:55.166+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 13 ms
+2026-06-13T16:44:55.166+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 188 ms
+2026-06-13T16:44:55.166+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 188 ms
+2026-06-13T16:44:55.166+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:45:16.243+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/jobs
+2026-06-13T16:45:16.256+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/jobs
+2026-06-13T16:45:16.280+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : JobServiceImpl.createJob executed in 16 ms
+2026-06-13T16:45:16.280+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : JobController.createJob executed in 16 ms
+2026-06-13T16:47:11.590+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/apply
+2026-06-13T16:47:11.604+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.access.AccessDeniedHandlerImpl   : Responding with 403 status code
+2026-06-13T16:47:11.604+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-06-13T16:47:11.604+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:47:11.604+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8085/error?continue to session
+2026-06-13T16:47:11.604+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-4] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-06-13T16:47:26.494+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:47:26.494+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:47:26.626+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login failed after 132 ms
+2026-06-13T16:47:26.626+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] c.e.j.aspect.LoggingAspect               : AuthController.login failed after 132 ms
+2026-06-13T16:47:26.629+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.RuntimeException: Invalid password]
+2026-06-13T16:47:26.633+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:47:34.927+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:47:34.927+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:47:35.094+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login failed after 165 ms
+2026-06-13T16:47:35.094+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] c.e.j.aspect.LoggingAspect               : AuthController.login failed after 165 ms
+2026-06-13T16:47:35.096+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.RuntimeException: Invalid password]
+2026-06-13T16:47:35.097+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:47:45.041+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/auth/login
+2026-06-13T16:47:45.041+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/auth/login
+2026-06-13T16:47:45.186+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : RefreshTokenServiceImpl.createRefreshToken executed in 10 ms
+2026-06-13T16:47:45.186+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : UserServiceImpl.login executed in 145 ms
+2026-06-13T16:47:45.186+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] c.e.j.aspect.LoggingAspect               : AuthController.login executed in 145 ms
+2026-06-13T16:47:45.187+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-06-13T16:48:10.581+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/apply
+2026-06-13T16:48:10.591+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/apply
+2026-06-13T16:48:10.599+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : ApplicationServiceImpl.applyJob failed after 5 ms
+2026-06-13T16:48:10.599+07:00 ERROR 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] c.e.j.aspect.LoggingAspect               : ApplicationController.applyJob failed after 5 ms
+2026-06-13T16:48:10.601+07:00  WARN 27076 --- [JobPlatformSystem] [http-nio-8085-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.jobplatformsystem.exception.ResourceNotFoundException: Candidate not found]
+2026-06-13T16:48:22.133+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/v1/applications/apply
+2026-06-13T16:48:22.146+07:00 DEBUG 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/v1/applications/apply
+2026-06-13T16:48:22.181+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : ApplicationServiceImpl.applyJob executed in 33 ms
+2026-06-13T16:48:22.181+07:00  INFO 27076 --- [JobPlatformSystem] [http-nio-8085-exec-5] c.e.j.aspect.LoggingAspect               : ApplicationController.applyJob executed in 33 ms
+2026-06-13T16:58:57.758+07:00  INFO 27076 --- [JobPlatformSystem] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-13T16:58:57.785+07:00  INFO 27076 --- [JobPlatformSystem] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-06-13T16:58:57.851+07:00  INFO 27076 --- [JobPlatformSystem] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-13T16:58:57.880+07:00  INFO 27076 --- [JobPlatformSystem] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-13T16:58:57.893+07:00  INFO 27076 --- [JobPlatformSystem] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

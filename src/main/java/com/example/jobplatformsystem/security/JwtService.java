@@ -86,5 +86,8 @@ public class JwtService {
                 Claims::getExpiration
         ).before(new Date());
     }
+    public Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
+    }
 
 }

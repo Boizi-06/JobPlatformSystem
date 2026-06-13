@@ -15,10 +15,7 @@ import com.example.jobplatformsystem.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.example.jobplatformsystem.dto.request.LogoutRequest;
 import org.springframework.security.core.Authentication;
 import com.example.jobplatformsystem.dto.request.ChangePasswordRequest;
@@ -78,11 +75,16 @@ public class AuthController {
 
     @PostMapping("/logout")
     public String logout(
+            @RequestHeader("Authorization") String authHeader,
             @RequestBody LogoutRequest request) {
+
+        String accessToken = authHeader.substring(7);
 
         refreshTokenService.revokeRefreshToken(
                 request.getRefreshToken()
         );
+
+        userService.blacklistAccessToken(accessToken);
 
         return "Logout successful";
     }

@@ -30,4 +30,6 @@ public interface UserService {
 
     String forgotPassword(
             String email);
+
+    void blacklistAccessToken(String accessToken);
 }

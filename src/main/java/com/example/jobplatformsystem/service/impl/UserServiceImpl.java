@@ -13,6 +13,7 @@ import com.example.jobplatformsystem.mapper.UserMapper;
 import com.example.jobplatformsystem.repository.UserRepository;
 import com.example.jobplatformsystem.security.CustomUserDetailsService;
 import com.example.jobplatformsystem.service.RefreshTokenService;
+import com.example.jobplatformsystem.service.TokenBlacklistService;
 import com.example.jobplatformsystem.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +37,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-
+    private final TokenBlacklistService tokenBlacklistService;
     private final JwtService jwtService;
     private final RefreshTokenService refreshTokenService;
     private final CustomUserDetailsService customUserDetailsService;
@@ -208,6 +209,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
         return newPassword;
+    }
+    @Override
+    public void blacklistAccessToken(String accessToken) {
+        tokenBlacklistService.blacklistToken(accessToken);
     }
 
 }
